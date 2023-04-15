@@ -24,6 +24,9 @@ $groups = $_groups_sqlhandler->getRecords(array());
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 <body>
     <div class="container mt-5">
+        <div class="d-flex justify-content-end mb-3">    
+            <a href="#"  class="btn btn-success" ><i class="fa fa-create"></i>Create New Group</a>
+        </div>
         <table id="usetTable" class="table table-striped border">
             <thead>
                 <th>#</th>
@@ -34,6 +37,7 @@ $groups = $_groups_sqlhandler->getRecords(array());
             </thead>
             <tbody>
                 <?php if(!empty($groups)) { ?>
+                    
                     <?php foreach($groups as $group) { ?>
                         <tr>
                             <td><?php echo $group['id']; ?></td>
@@ -41,7 +45,6 @@ $groups = $_groups_sqlhandler->getRecords(array());
                             <td><?php echo $group['name']; ?></td>
                             <td><?php echo $group['description']; ?></td>
                             <td>
-                                <a href="#"  class="btn btn-success" ><i class="fa fa-create"></i>Create</a>
                                 <a href="#"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a>
                                 <a href="#" class="btn btn-danger" ><i class="fa fa-trash"></i>Delete</a>
                             </td>
