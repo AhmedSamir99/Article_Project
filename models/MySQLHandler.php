@@ -1,62 +1,89 @@
 <?php
-class MySQLHandler implements DBHandler{
-    private $_table;
-    private $_db_handler;
 
+
+class MySqlHandler implements DbHandler{
+    private $_db_handler;
+    private $_table;
+    
     public function __construct($table){
-        $this->_table = $table;
-        $this->connect();
+        $this->_table= $table;
+        $this-> connect();        
     }
 
     public function connect(){
-        try
-        {
-            $handler = mysqli_connect(_Host_, _User_, _Pass_, _DB_);
-            if(!$handler)
-            {
-                return false;
-            }
-            $this->_db_handler = $handler;
-            // die('Done network');
-            return true;
-        }
-        catch(Exception $e)
-        {
-            die('Something went wrong, Please comeback later');
+    try{
+        
+    $handler= mysqli_connect(HOST, USER, PASS, DB);
+    if ($handler) {
+        $this->_db_handler= $handler;
+        return true;
+    } else {
+        echo "Could not connect to MySQL<br/>";
+        return false;
+    }
+}
+    catch(Exception $e) {
+        die("something went wrong, please try again");
         }
     }
 
-    public function getRecords($fields = array(),  $start = 0){
+    public function disconnect() {
+        if ($this->_db_handler)
+            mysqli_close($this->_db_handler);
+    }
+
+    public function getData($fields = array(), $start = 0) {
         $table = $this->_table;
-        if(empty($fields)){
+
+        if (empty($fields)) {
             $sql = "select * from `$table`";
-        }else{
+        } else {
             $sql = "select ";
-            foreach($fields as $field){
-                $sql .= " `$field`, ";
+            foreach ($fields as $f) {
+                $sql .= " $f, ";
             }
-            $sql .= " from `$table` ";
+            $sql .= "from  $table ";
             $sql = str_replace(", from", "from", $sql);
         }
-        $sql .= "limit $start," ._Recorde_per_page_;
+        $sql .= "limit $start," . RECORDS_PER_PAGE;
         return $this->getResults($sql);
     }
 
-    public function getResults($sql){
-        if(_Debug_Mode_ === 1){
-            echo '<h4> Sent Query: </h4>' .$sql. "<br>";
-        }
-        $_result_handler = mysqli_query($this->_db_handler, $sql);//point to results
-        $_results = [];
 
-        if(!$_result_handler){
-            return false;
-        }
-        //loop and fetch the record that fetched by handler
-        while($record = mysqli_fetch_array($_result_handler, MYSQLI_ASSOC)){
-            $_results[] = array_change_key_case($record);//store each row for ecach index
-        }
-        return $_results;
+    public function getRecordById($id,$primary_key="id"){
+        die($id);
+        $table=$this->_table;
+        $sql= "select * from `$table` where `$primary_key` =$id";
+        return $this->getResults($sql);
     }
 
+
+private function getResults($sql){
+    if(Debug__Mode === 1){
+      echo "send query:" .$sql ."<br/>";
+    }
+    $_handler_results= mysqli_query($this->_db_handler, $sql);
+    $_arr_results= array();
+    if($_handler_results){
+        while ($row =mysqli_fetch_array($_handler_results, MYSQLI_ASSOC)){
+            $_arr_results []= array_change_key_case($row);
+        }
+        return $_arr_results;
+    }
+    else{
+        return false;
+    }
 }
+
+public function executeQuery($sql) {
+    $_handler_results = mysqli_query($this->_db_handler, $sql);
+  
+    if ($_handler_results) {
+       return true;
+    } else {
+      return false;
+    }
+  }
+
+}
+?>

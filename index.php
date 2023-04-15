@@ -1,7 +1,18 @@
-<?php
+<?php 
+require_once("vendor/autoload.php");
+function remember_Variable($var){
+    if(isset($_POST[$var])&&!empty($_POST[$var])){
+        return $_POST[$var];
+}}
+session_start();
 
-require_once('vendor/autoload.php');
+$db= new MySqlHandler("users");
 
-$_groups_sqlhandler = new MySQLHandler("groups");
-
-require_once("views/Groups/all.php");
+if(isset($_GET["id"]) && is_numeric ($_GET["id"])){
+    require_once("views/single.php");
+}
+else{
+    
+    require_once("views/all.php");
+}
+?>

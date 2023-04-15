@@ -1,9 +1,8 @@
 {
-    "require": {
 
-    },
+    "require": {},
     "autoload": {
         "classmap": ["models"],
-        "files":    ["config.php"]
+        "files": ["config.php"]
     }
 }

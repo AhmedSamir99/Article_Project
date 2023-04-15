@@ -7,6 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'DBHandler' => $baseDir . '/models/DBHandler.php',
-    'MySQLHandler' => $baseDir . '/models/MySQLHandler.php',
+    'DbHandler' => $baseDir . '/models/DbHandler.php',
+    'MySqlHandler' => $baseDir . '/models/MySqlHandler.php',
 );
