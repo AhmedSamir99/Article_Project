@@ -49,7 +49,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          
         </select><br>
         <label for="group_id">Group ID:</label>
-        <input type="text" id="group_id" name="group_id"><br>
+        <select id="group_id" name="group_id">
+            <?php
+            $dbHandler = new MySqlHandler('groups'); 
+            $groups = $dbHandler->getData();
+
+            // Loop through groups and create options for dropdown menu
+            foreach ($groups as $group) {
+                echo '<option value="' . $group['id'] . '">' . $group['name'] . '</option>';
+            }
+            ?>
+        </select><br>
         <input type="submit" value="Submit">
     </form>
 </body>

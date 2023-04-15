@@ -1,5 +1,10 @@
 <?php
 $users= $db->getData(array());
+// $users = $db->getData("
+//     SELECT users.*, groups.name AS group_name 
+//     FROM users 
+//     INNER JOIN groups ON users.group_id = groups.id 
+// ");
 ?>
     <link
         rel="stylesheet"
