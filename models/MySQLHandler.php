@@ -38,10 +38,17 @@ class MySQLHandler implements DBHandler{
             $sql .= " from `$table` ";
             $sql = str_replace(", from", "from", $sql);
         }
-        $sql .= "limit $start," ._Recorde_per_page_;
         return $this->getResults($sql);
     }
 
+    public function insert($table,$params=array()){
+    	$sql='INSERT INTO `'.$table.'` (`'.implode('`, `',array_keys($params)).'`) VALUES ("' . implode('", "', $params) . '")';
+        if(mysqli_query($this->_db_handler,$sql)){
+            return true;
+        }
+        
+    }
+    
     public function getResults($sql){
         if(_Debug_Mode_ === 1){
             echo '<h4> Sent Query: </h4>' .$sql. "<br>";
@@ -57,6 +64,16 @@ class MySQLHandler implements DBHandler{
             $_results[] = array_change_key_case($record);//store each row for ecach index
         }
         return $_results;
+    }
+
+    public function check_empty($data, $fields) {
+        $msg = null;
+        foreach ($fields as $value) {
+            if (empty($data[$value])) {
+                $msg .= "$value field empty <br />";
+            }
+        } 
+        return $msg;
     }
 
 }

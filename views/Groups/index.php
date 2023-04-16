@@ -1,14 +1,9 @@
 <?php
-// $rows_number = $sqlhandler->get_number_of_rows('items');
-// $current_index = isset($_GET["next"]) && is_numeric($_GET["next"])? (int)$_GET["next"] : 0 ;
-// $next_index = ($current_index + _Recorde_per_page_ < $rows_number) ? $current_index + _Recorde_per_page_ : 0 ;
-// $previous_index = ($current_index - _Recorde_per_page_ > 0) ? $current_index - _Recorde_per_page_ : 0 ;
 
-
+include_once("group_object.php");
 $groups = $_groups_sqlhandler->getRecords(array());
 
-
- ?>
+?>
 <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
@@ -25,7 +20,7 @@ $groups = $_groups_sqlhandler->getRecords(array());
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-end mb-3">    
-            <a href="#"  class="btn btn-success" ><i class="fa fa-create"></i>Create New Group</a>
+            <a href="create.php"  class="btn btn-success" ><i class="fa fa-create"></i>Create New Group</a>
         </div>
         <table id="usetTable" class="table table-striped border">
             <thead>
@@ -41,11 +36,11 @@ $groups = $_groups_sqlhandler->getRecords(array());
                     <?php foreach($groups as $group) { ?>
                         <tr>
                             <td><?php echo $group['id']; ?></td>
-                            <td><img src="<?php echo "images/" .$group["icon"]; ?>" height="40vh"></td>
+                            <td><img src="<?php echo "../../images/" .$group["icon"]; ?>" height="40vh"></td>
                             <td><?php echo $group['name']; ?></td>
                             <td><?php echo $group['description']; ?></td>
                             <td>
-                                <a href="#"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a>
+                                <!-- <a href="edit.php?id=<?=$group["id"]?>"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a> -->
                                 <a href="#" class="btn btn-danger" ><i class="fa fa-trash"></i>Delete</a>
                             </td>
                         </tr>
@@ -68,7 +63,7 @@ $groups = $_groups_sqlhandler->getRecords(array());
 
 
 <!-- <td><a href="edit.php?id=
-                    <?php echo $user['id']; ?>">
+                   
                     Edit</a> | <a href="delete.php?id=
-                    <?php echo $user['id']; ?>
+                   
                     ">Delete</a></td> -->
