@@ -4,7 +4,7 @@ $sname= "localhost";
 $unmae= "root";
 $password = "";
 
-$db_name = "pharmacy_system";
+$db_name = "article_website";
 
 $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 

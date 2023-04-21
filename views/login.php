@@ -43,11 +43,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             	header("Location: home.php");
 		        exit();
             }else{
-				header("Location: index.php?error=Incorect User name or password");
+				header("Location: index.php?error=Incorect email or password");
 		        exit();
 			}
 		}else{
-			header("Location: index.php?error=Incorect User name or password");
+			header("Location: index.php?error=Incorect email or password");
 	        exit();
 		}
 	}
