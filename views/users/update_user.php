@@ -1,6 +1,6 @@
 <?php
     // Load the user record from the database
-    require_once '../vendor/autoload.php'; 
+    require_once '../../vendor/autoload.php'; 
     $db = new MySqlHandler('users');
     // $user = $db->getRecordById($_POST['id']);
     $id = (isset ($_POST["id"]))? intval ($_POST["id"]) : 0;
@@ -18,5 +18,5 @@
     $db->updateRecord($user['id'], $data);
 
     // Redirect back to the user list
-    header('Location:../index.php');
+    header('Location:../../index.php');
 ?>

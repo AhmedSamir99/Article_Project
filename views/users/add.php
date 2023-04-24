@@ -1,5 +1,5 @@
 <?php
-require_once '../vendor/autoload.php'; 
+require_once '../../vendor/autoload.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Form has been submitted, process the form data
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $dbHandler->executeQuery($sql);
 
     if ($result) {
-        header("Location:../index.php");
+        header("Location:../../index.php");
     } 
 }
 ?>

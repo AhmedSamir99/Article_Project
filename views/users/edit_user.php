@@ -1,5 +1,5 @@
 <?php
-require_once '../vendor/autoload.php'; 
+require_once '../../vendor/autoload.php'; 
 $db = new MySqlHandler('users');
 $id = (isset ($_GET["id"]))? intval ($_GET["id"]) : 0;
 $user = $db->getRecordById($id)[0];

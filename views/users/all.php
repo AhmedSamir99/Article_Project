@@ -16,7 +16,7 @@ $users= $db->getData(array());
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-end mb-3">    
-            <a href="views/add.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New user</a>
+            <a href="views/users/add.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New user</a>
         </div>
         <table id="usetTable" class="table table-striped border">
             <thead>
@@ -42,7 +42,7 @@ $users= $db->getData(array());
                             <td><?php echo $user['group_id']; ?></td>
                             <td><?php echo $user['type']; ?></td>
                             <td>
-                            <a href="views/edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-info"><i class="fa fa-edit"></i>Edit </a>
+                            <a href="views/users/edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-info"><i class="fa fa-edit"></i>Edit </a>
 
                             <a href="#" onclick="confirmDelete(<?php echo $user['id']; ?>)" class="btn btn-danger">Delete</a>
 
@@ -64,7 +64,7 @@ $users= $db->getData(array());
 <script>
 function confirmDelete(id) {
   if (confirm("Are you sure you want to delete this user?")) {
-    window.location.href = "views/delete_user.php?id=" + id + "&confirm=true";
+    window.location.href = "views/users/delete_user.php?id=" + id + "&confirm=true";
   }
 }
 </script>

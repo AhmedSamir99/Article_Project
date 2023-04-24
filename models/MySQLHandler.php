@@ -73,6 +73,8 @@ private function getResults($sql){
     }
 }
 
+
+
 public function executeQuery($sql) {
     $_handler_results = mysqli_query($this->_db_handler, $sql);
   
