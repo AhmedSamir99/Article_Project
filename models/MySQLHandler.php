@@ -41,6 +41,12 @@ class MySQLHandler implements DBHandler{
         return $this->getResults($sql);
     }
 
+    public function get_record_by_id($id, $primary_key="id"){
+        $table = $this->_table;
+        $sql = "select * from `$table` where `$primary_key` = $id";
+        return $this->getResults($sql);
+    }
+
     public function insert($table,$params=array()){
     	$sql='INSERT INTO `'.$table.'` (`'.implode('`, `',array_keys($params)).'`) VALUES ("' . implode('", "', $params) . '")';
         if(mysqli_query($this->_db_handler,$sql)){
@@ -48,7 +54,18 @@ class MySQLHandler implements DBHandler{
         }
         
     }
-    
+
+    public function update($table,$params=array(),$where){
+    		$args=array();
+			foreach($params as $field=>$value){
+				$args[]=$field.'="'.$value.'"';
+			}
+			$sql='UPDATE '.$table.' SET '.implode(',',$args).' WHERE '.$where;
+            if(mysqli_query($this->_db_handler,$sql)){
+                return true;
+            }
+    }
+
     public function getResults($sql){
         if(_Debug_Mode_ === 1){
             echo '<h4> Sent Query: </h4>' .$sql. "<br>";
