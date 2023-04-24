@@ -1,6 +1,5 @@
 <?php
 
-
 class MySqlHandler implements DbHandler{
     private $_db_handler;
     private $_table;
@@ -51,7 +50,6 @@ class MySqlHandler implements DbHandler{
 
 
     public function getRecordById($id,$primary_key="id"){
-        die($id);
         $table=$this->_table;
         $sql= "select * from `$table` where `$primary_key` =$id";
         return $this->getResults($sql);
@@ -92,5 +90,16 @@ public function executeQuery($sql) {
     return $this->executeQuery($sql);
 }
 
+
+public function updateRecord($id, $data) {
+    $table = $this->_table;
+    $updateFields = '';
+    foreach ($data as $key => $value) {
+        $updateFields .= "`$key`='$value',";
+    }
+    $updateFields = rtrim($updateFields, ','); // remove the last comma
+    $sql = "update `$table` set $updateFields where `id` = $id";
+    return $this->executeQuery($sql);
+}
 }
 ?>

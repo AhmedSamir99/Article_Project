@@ -42,9 +42,9 @@ $users= $db->getData(array());
                             <td><?php echo $user['group_id']; ?></td>
                             <td><?php echo $user['type']; ?></td>
                             <td>
-                                <a href="#"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a>
-                        
-                                <a href="views/delete_user.php?id=<?php echo $user['id']; ?>&confirm=true" class="btn btn-danger">Delete</a>
+                            <a href="views/edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-info"><i class="fa fa-edit"></i>Edit </a>
+
+                            <a href="#" onclick="confirmDelete(<?php echo $user['id']; ?>)" class="btn btn-danger">Delete</a>
 
                             </td>
                         </tr>
@@ -61,6 +61,13 @@ $users= $db->getData(array());
         } );
     </script>
 
+<script>
+function confirmDelete(id) {
+  if (confirm("Are you sure you want to delete this user?")) {
+    window.location.href = "views/delete_user.php?id=" + id + "&confirm=true";
+  }
+}
+</script>
 
 </body>
 
