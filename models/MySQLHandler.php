@@ -85,5 +85,12 @@ public function executeQuery($sql) {
     }
   }
 
+
+  public function deleteRecordById($id, $primary_key="id") {
+    $table = $this->_table;
+    $sql = "delete from `$table` where `$primary_key` = $id";
+    return $this->executeQuery($sql);
+}
+
 }
 ?>

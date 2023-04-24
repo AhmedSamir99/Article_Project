@@ -1,10 +1,5 @@
 <?php
 $users= $db->getData(array());
-// $users = $db->getData("
-//     SELECT users.*, groups.name AS group_name 
-//     FROM users 
-//     INNER JOIN groups ON users.group_id = groups.id 
-// ");
 ?>
     <link
         rel="stylesheet"
@@ -48,7 +43,9 @@ $users= $db->getData(array());
                             <td><?php echo $user['type']; ?></td>
                             <td>
                                 <a href="#"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a>
-                                <a href="#" class="btn btn-danger" ><i class="fa fa-trash"></i>Delete</a>
+                        
+                                <a href="views/delete_user.php?id=<?php echo $user['id']; ?>&confirm=true" class="btn btn-danger">Delete</a>
+
                             </td>
                         </tr>
                     <?php } ?>
@@ -63,4 +60,8 @@ $users= $db->getData(array());
             $('#usetTable').DataTable();
         } );
     </script>
+
+
 </body>
+
+
