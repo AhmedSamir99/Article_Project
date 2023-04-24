@@ -1,29 +1,5 @@
 <?php
 include_once("group_object.php");
-
-if(isset($_POST['submit'])) {
-    $icon = "<i><img src='../../images/group.png'style='width:2vw;height:4vh'></i>";
-	$name = ($_POST['name']);
-	$description = $_POST['description'];		
-	$emptyInput = $_groups_sqlhandler->check_empty($_POST, array('name', 'description'));
-
-    if($emptyInput){
-        echo    '<h5 style="text-align:center; color:red; padding:2%">'
-                    .$emptyInput.
-                '</h5>';
-    }
-    
-	else{
-		$array = array( 
-            // "icon" => "<i class='bi bi-people-fill fs-3'></i>",
-            "icon" => $icon,
-			"name" => $name, 
-			"description" => $description		
-		); 
-		$_groups_sqlhandler->insert('groups',$array);  	
-        header("Location:index.php");
-	}  
-}
 ?>
 <link
     rel="stylesheet"
@@ -35,14 +11,11 @@ if(isset($_POST['submit'])) {
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
     crossorigin="anonymous"
 />
-
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-
 <div class="container my-4 p-2">
     
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <h3>Group Add</h3>
+		<h3>Edit Employee Details</h3>	
             <a href="index.php" class="btn btn-danger" >Back </a>
         </div>
         <div class="card-body">

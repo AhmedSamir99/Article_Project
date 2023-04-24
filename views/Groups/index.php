@@ -25,7 +25,7 @@ $groups = $_groups_sqlhandler->getRecords(array());
         <table id="usetTable" class="table table-striped border">
             <thead>
                 <th>#</th>
-                <th>Group Icon</th>
+                <!-- <th>Group Icon</th> -->
                 <th>Group Name</th>
                 <th>Group Description</th>
                 <th>Actions</th>
@@ -36,11 +36,12 @@ $groups = $_groups_sqlhandler->getRecords(array());
                     <?php foreach($groups as $group) { ?>
                         <tr>
                             <td><?php echo $group['id']; ?></td>
-                            <td><img src="<?php echo "../../images/" .$group["icon"]; ?>" height="40vh"></td>
-                            <td><?php echo $group['name']; ?></td>
+                            <!-- <td><img src="<?php echo "../../images/" .$group["icon"]; ?>" height="40vh"></td> -->
+                            <td><?php echo $group['icon']; ?>&nbsp
+                            <span class="fs-5"><?php echo $group['name']; ?></td>
                             <td><?php echo $group['description']; ?></td>
                             <td>
-                                <!-- <a href="edit.php?id=<?=$group["id"]?>"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a> -->
+                                <a href="edit.php?id=<?=$group["id"]?>"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a>
                                 <a href="#" class="btn btn-danger" ><i class="fa fa-trash"></i>Delete</a>
                             </td>
                         </tr>
@@ -57,13 +58,3 @@ $groups = $_groups_sqlhandler->getRecords(array());
         } );
     </script>
 </body>
-
-
-
-
-
-<!-- <td><a href="edit.php?id=
-                   
-                    Edit</a> | <a href="delete.php?id=
-                   
-                    ">Delete</a></td> -->

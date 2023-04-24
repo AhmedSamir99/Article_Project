@@ -64,9 +64,9 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `icon`, `name`, `description`) VALUES
-(1, '4.jpg', 'Admins', 'This is a group form admins only'),
-(2, '5.jpg', 'Editors', 'This is a group for editors only'),
-(3, '6.jpg', 'Group3', 'This is Group3');
+(1, '<i><img src="../../images/group.png"style="width:2vw;height:4vh"></i>', 'Admins', 'This is a group form admins only'),
+(2, '<i><img src="../../images/group.png"style="width:2vw;height:4vh"></i>', 'Editors', 'This is a group for editors only'),
+(3, '<i><img src="../../images/group.png"style="width:2vw;height:4vh"></i>', 'Group3', 'This is Group3');
 
 -- --------------------------------------------------------
 
