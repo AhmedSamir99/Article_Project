@@ -43,17 +43,17 @@
         <div class="form-box" >
             <div class="form-value">
     <form id="form" action="#" method="post" name="contactForm" >
-    <div class="inputbox">
-        <input type="password" name="password" >
-        <label for="">password</label>
-    </div>
-
-    <div class="inputbox">    
-        <input type="input" name="email" >
-        <label for="">Email</label>
-
-    </div>    
-
+        
+        <div class="inputbox">    
+            <input type="input" name="email" >
+            <label for="">Email</label>
+            
+        </div>    
+        <div class="inputbox">
+            <input type="password" name="password" >
+            <label for="">password</label>
+        </div>
+        
     <div style="display: flex; flex-direction: row;">
         <button type="submit">Login</button> 
     </div>
