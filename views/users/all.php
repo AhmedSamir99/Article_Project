@@ -1,10 +1,27 @@
 <?php
-$users= $db->getData(array());
-// $users = $db->getData("
-//     SELECT users.*, groups.name AS group_name 
-//     FROM users 
-//     INNER JOIN groups ON users.group_id = groups.id 
-// ");
+session_start();
+require_once '../../vendor/autoload.php'; 
+$db=new MySqlHandler('users');
+// $users= $db->getData(array());
+
+//check first if the user is logged in
+if(isset($_SESSION["logged"]) ==true) {
+    if ($_SESSION['type'] == 'admin') {
+        var_dump($_SESSION['type']); //if the user was admin , then get all the users
+         //join groups table to i can get the group name instead of group id
+        $sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_id = g.id";
+        $users= $db->getResults($sql);
+
+    } elseif($_SESSION['type'] == 'editor') {
+        var_dump($_SESSION['type']); //if the user was editor , then get the users with type editor
+        $sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_id = g.id WHERE u.type ='editor'";
+        $users= $db->getResults($sql);
+    }
+    
+}
+else{
+    die ("you are not allowed to see this page");
+}
 ?>
     <link
         rel="stylesheet"
@@ -21,7 +38,7 @@ $users= $db->getData(array());
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-end mb-3">    
-            <a href="views/add.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New user</a>
+            <a href="add.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New user</a>
         </div>
         <table id="usetTable" class="table table-striped border">
             <thead>
@@ -30,7 +47,7 @@ $users= $db->getData(array());
                 <th>Email</th>
                 <th>User Name</th>
                 <th>Mobile Number</th>
-                <th>group Id</th>
+                <th>group Name</th>
                 <th>Type</th>
                 <th>Actions</th>
             </thead>
@@ -44,11 +61,13 @@ $users= $db->getData(array());
                             <td><?php echo $user['email']; ?></td>
                             <td><?php echo $user['username']; ?></td>
                             <td><?php echo $user['mobile_number']; ?></td>
-                            <td><?php echo $user['group_id']; ?></td>
+                            <td><?php echo $user['group_name']; ?></td>
                             <td><?php echo $user['type']; ?></td>
                             <td>
-                                <a href="#"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a>
-                                <a href="#" class="btn btn-danger" ><i class="fa fa-trash"></i>Delete</a>
+                            <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-info"><i class="fa fa-edit"></i>Edit </a>
+
+                            <a href="#" onclick="confirmDelete(<?php echo $user['id']; ?>)" class="btn btn-danger">Delete</a>
+
                             </td>
                         </tr>
                     <?php } ?>
@@ -63,4 +82,14 @@ $users= $db->getData(array());
             $('#usetTable').DataTable();
         } );
     </script>
+
+<script>
+function confirmDelete(id) {
+  if (confirm("Are you sure you want to delete this user?")) {
+    window.location.href = "delete_user.php?id=" + id + "&confirm=true";
+  }
+}
+</script>
 </body>
+
+

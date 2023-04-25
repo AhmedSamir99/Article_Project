@@ -1,6 +1,5 @@
 <?php
 
-
 class MySqlHandler implements DbHandler{
     private $_db_handler;
     private $_table;
@@ -51,14 +50,13 @@ class MySqlHandler implements DbHandler{
 
 
     public function getRecordById($id,$primary_key="id"){
-        die($id);
         $table=$this->_table;
         $sql= "select * from `$table` where `$primary_key` =$id";
         return $this->getResults($sql);
     }
 
 
-private function getResults($sql){
+public function getResults($sql){
     if(Debug__Mode === 1){
       echo "send query:" .$sql ."<br/>";
     }
@@ -75,15 +73,37 @@ private function getResults($sql){
     }
 }
 
+
+
 public function executeQuery($sql) {
     $_handler_results = mysqli_query($this->_db_handler, $sql);
   
     if ($_handler_results) {
-       return true;
+        // $num_rows = mysqli_num_rows($_handler_results);
+        // return $num_rows;
+        return true;
+       
     } else {
       return false;
     }
   }
 
+  public function deleteRecordById($id, $primary_key="id") {
+    $table = $this->_table;
+    $sql = "delete from `$table` where `$primary_key` = $id";
+    return $this->executeQuery($sql);
+}
+
+
+public function updateRecord($id, $data) {
+    $table = $this->_table;
+    $updateFields = '';
+    foreach ($data as $key => $value) {
+        $updateFields .= "`$key`='$value',";
+    }
+    $updateFields = rtrim($updateFields, ','); // remove the last comma
+    $sql = "update `$table` set $updateFields where `id` = $id";
+    return $this->executeQuery($sql);
+}
 }
 ?>
