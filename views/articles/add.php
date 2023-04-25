@@ -1,6 +1,6 @@
 <?php
 require_once '../../vendor/autoload.php'; 
-
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Form has been submitted, process the form data
     $title = $_POST['title'];
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $dbHandler->executeQuery($sql);
 
         if ($result) {
-            header("Location:../../index.php");
+            header("Location:all.php");
         } 
     } else {
         echo "Error uploading file.";
@@ -74,9 +74,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="user_id">User Name:</label>
         <select id="user_id" name="user_id">
             <?php
-            $dbHandler = new MySqlHandler('users'); 
-            $users = $dbHandler->getData();
-
+            $db = new MySqlHandler('users'); 
+            if($_SESSION['type'] == 'admin') {
+                $users = $db->getData();
+            }
+            elseif($_SESSION['type'] == 'editor'){
+                $sql = "SELECT * from users WHERE type ='editor'";
+                $users= $db->getResults($sql);
+            }
             // Loop through users and create options for dropdown menu
             foreach ($users as $user) {
                 echo '<option value="' . $user['id'] . '">' . $user['name'] . '</option>';

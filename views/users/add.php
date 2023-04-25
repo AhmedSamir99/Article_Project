@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $dbHandler->executeQuery($sql);
 
     if ($result) {
-        header("Location:../../index.php");
+        header("Location:all.php");
     } 
 }
 ?>

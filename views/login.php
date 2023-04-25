@@ -18,7 +18,7 @@
                 header("Location:views/articles/all.php");
             }
             elseif($type=="editor"){
-                header("Location:./users/all.php");
+                header("Location:views/users/all.php");
             }
         } else {
             echo "Invalid email or password";

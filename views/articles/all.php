@@ -14,7 +14,7 @@ if(isset($_SESSION["logged"]) ==true) {
         FROM articles a
         JOIN users u ON a.user_id = u.id
         WHERE u.group_id = 2";
-        $articles = $db->getResults($sql);
+        $articles = $articles->getResults($sql);
     }
 }
 ?>
@@ -33,7 +33,7 @@ if(isset($_SESSION["logged"]) ==true) {
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-end mb-3">    
-            <a href="views/articles/add.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New Article</a>
+            <a href="add.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New Article</a>
         </div>
         <table id="articleTable" class="table table-striped border">
             <thead>
@@ -54,7 +54,7 @@ if(isset($_SESSION["logged"]) ==true) {
                             <td><?php echo $article['id']; ?></td>
                             <td><?php echo $article['title']; ?></td>
                             <td><?php echo $article['summary']; ?></td>
-                            <td><img src="<?php echo "images/" .$article["image"]; ?>" style="height:50px ;width: 50px"></td>
+                            <td><img src="<?php echo "../../images/" .$article["image"]; ?>" style="height:50px ;width: 50px"></td>
                             <td><?php echo $article['body']; ?></td>
                             <td><?php echo $article['user_id']; ?></td>
                             <td><?php echo $article['publish_date']; ?></td>
@@ -78,7 +78,7 @@ if(isset($_SESSION["logged"]) ==true) {
 <script>
 function confirmDelete(id) {
   if (confirm("Are you sure you want to delete this article?")) {
-    window.location.href = "views/articles/delete_article.php?id=" + id + "&confirm=true";
+    window.location.href = "delete_article.php?id=" + id + "&confirm=true";
   }
 }
 </script>

@@ -18,5 +18,5 @@
     $db->updateRecord($user['id'], $data);
 
     // Redirect back to the user list
-    header('Location:../../index.php');
+    header('Location:all.php');
 ?>
