@@ -13,13 +13,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $dbHandler = new MySqlHandler('users');
 
+    // $sql = "SELECT * FROM users WHERE email='$email'";
+    // $result = $dbHandler->executeQuery($sql);
+    // if ($result && $result > 0) {
+    //     // email already exists, display error message
+    //     echo "Error: Email already exists";
+    // }
+
+  
     // Insert the form data into the users table
     $sql = "INSERT INTO users (name, email, mobile_number,password,username, type, group_id) VALUES ('$name', '$email', '$mobilenumber','$password','$username', '$type', '$group_id')";
     $result = $dbHandler->executeQuery($sql);
 
     if ($result) {
         header("Location:all.php");
-    } 
+    }
 }
 ?>
 

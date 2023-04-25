@@ -8,12 +8,19 @@ $db=new MySqlHandler('users');
 if(isset($_SESSION["logged"]) ==true) {
     if ($_SESSION['type'] == 'admin') {
         var_dump($_SESSION['type']); //if the user was admin , then get all the users
-        $users= $db->getData(array());
+         //join groups table to i can get the group name instead of group id
+        $sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_id = g.id";
+        $users= $db->getResults($sql);
+
     } elseif($_SESSION['type'] == 'editor') {
-        var_dump($_SESSION['type']); //if the user was admin , then get the users with type editor
-        $sql = "SELECT * from users WHERE type ='editor'";
+        var_dump($_SESSION['type']); //if the user was editor , then get the users with type editor
+        $sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_id = g.id WHERE u.type ='editor'";
         $users= $db->getResults($sql);
     }
+    
+}
+else{
+    die ("you are not allowed to see this page");
 }
 ?>
     <link
@@ -40,7 +47,7 @@ if(isset($_SESSION["logged"]) ==true) {
                 <th>Email</th>
                 <th>User Name</th>
                 <th>Mobile Number</th>
-                <th>group Id</th>
+                <th>group Name</th>
                 <th>Type</th>
                 <th>Actions</th>
             </thead>
@@ -54,7 +61,7 @@ if(isset($_SESSION["logged"]) ==true) {
                             <td><?php echo $user['email']; ?></td>
                             <td><?php echo $user['username']; ?></td>
                             <td><?php echo $user['mobile_number']; ?></td>
-                            <td><?php echo $user['group_id']; ?></td>
+                            <td><?php echo $user['group_name']; ?></td>
                             <td><?php echo $user['type']; ?></td>
                             <td>
                             <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-info"><i class="fa fa-edit"></i>Edit </a>
@@ -83,7 +90,6 @@ function confirmDelete(id) {
   }
 }
 </script>
-
 </body>
 
 

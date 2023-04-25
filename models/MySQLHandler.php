@@ -79,12 +79,14 @@ public function executeQuery($sql) {
     $_handler_results = mysqli_query($this->_db_handler, $sql);
   
     if ($_handler_results) {
-       return true;
+        // $num_rows = mysqli_num_rows($_handler_results);
+        // return $num_rows;
+        return true;
+       
     } else {
       return false;
     }
   }
-
 
   public function deleteRecordById($id, $primary_key="id") {
     $table = $this->_table;

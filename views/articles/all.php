@@ -6,16 +6,19 @@ $articles= new MySqlHandler("articles");
 //check first if the user is logged in
 if(isset($_SESSION["logged"]) ==true) {
     if ($_SESSION['type'] == 'admin') {
-        var_dump($_SESSION['type']);
+        var_dump($_SESSION['type']); //if the user was admin, then get all the data
         $articles= $articles->getData(array());
     } elseif($_SESSION['type'] == 'editor') {
-        var_dump($_SESSION['type']);
+        var_dump($_SESSION['type']); // if the user was editor, then get the articles belongs to the users with group id =2 (editor group)
         $sql = "SELECT a.*
         FROM articles a
         JOIN users u ON a.user_id = u.id
         WHERE u.group_id = 2";
         $articles = $articles->getResults($sql);
     }
+}
+else{
+    die ("you are not allowed to see this page");
 }
 ?>
     <link
