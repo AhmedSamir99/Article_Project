@@ -56,7 +56,7 @@ class MySqlHandler implements DbHandler{
     }
 
 
-private function getResults($sql){
+public function getResults($sql){
     if(Debug__Mode === 1){
       echo "send query:" .$sql ."<br/>";
     }

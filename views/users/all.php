@@ -1,5 +1,20 @@
 <?php
-$users= $db->getData(array());
+session_start();
+require_once '../../vendor/autoload.php'; 
+$db=new MySqlHandler('users');
+// $users= $db->getData(array());
+
+//check first if the user is logged in
+if(isset($_SESSION["logged"]) ==true) {
+    if ($_SESSION['type'] == 'admin') {
+        var_dump($_SESSION['type']); //if the user was admin , then get all the users
+        $users= $db->getData(array());
+    } elseif($_SESSION['type'] == 'editor') {
+        var_dump($_SESSION['type']); //if the user was admin , then get the users with type editor
+        $sql = "SELECT * from users WHERE type ='editor'";
+        $users= $db->getResults($sql);
+    }
+}
 ?>
     <link
         rel="stylesheet"

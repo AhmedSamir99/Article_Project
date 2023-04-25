@@ -1,5 +1,22 @@
 <?php
-$articles= $articles->getData(array());
+session_start();
+require_once '../../vendor/autoload.php'; 
+
+$articles= new MySqlHandler("articles");
+//check first if the user is logged in
+if(isset($_SESSION["logged"]) ==true) {
+    if ($_SESSION['type'] == 'admin') {
+        var_dump($_SESSION['type']);
+        $articles= $articles->getData(array());
+    } elseif($_SESSION['type'] == 'editor') {
+        var_dump($_SESSION['type']);
+        $sql = "SELECT a.*
+        FROM articles a
+        JOIN users u ON a.user_id = u.id
+        WHERE u.group_id = 2";
+        $articles = $db->getResults($sql);
+    }
+}
 ?>
     <link
         rel="stylesheet"
