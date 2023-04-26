@@ -3,6 +3,6 @@
     "require": {},
     "autoload": {
         "classmap": ["models"],
-        "files": ["config.php"]
+        "files": ["config.php", "functions.php"]
     }
 }

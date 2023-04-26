@@ -13,18 +13,12 @@
             $_SESSION['logged']=true; //the user is logged in
             $type = $result[0]['type']; // fetch the first row of the result set
             $_SESSION['type'] = $type;
-            $user=$result[0];
-            $_SESSION['user']=$user;
             if($type=="admin"){
                 // header("Location:../index.php");
                 header("Location:views/articles/all.php");
             }
             elseif($type=="editor"){
                 header("Location:views/users/all.php");
-            }
-            elseif($type=="user"){
-                header("Location:views/users/welcome.php");
-                // header("Location:views/users/profile.php");
             }
         } else {
             echo "Invalid email or password";
@@ -43,17 +37,17 @@
         <div class="form-box" >
             <div class="form-value">
     <form id="form" action="#" method="post" name="contactForm" >
-        
-        <div class="inputbox">    
-            <input type="input" name="email" >
-            <label for="">Email</label>
-            
-        </div>    
-        <div class="inputbox">
-            <input type="password" name="password" >
-            <label for="">password</label>
-        </div>
-        
+    <div class="inputbox">
+        <input type="password" name="password" >
+        <label for="">password</label>
+    </div>
+
+    <div class="inputbox">    
+        <input type="input" name="email" >
+        <label for="">Email</label>
+
+    </div>    
+
     <div style="display: flex; flex-direction: row;">
         <button type="submit">Login</button> 
     </div>

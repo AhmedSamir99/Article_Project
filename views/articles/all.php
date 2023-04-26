@@ -36,7 +36,7 @@ else{
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-end mb-3">    
-            <a href="add.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New Article</a>
+            <a href="add_article_form.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New Article</a>
         </div>
         <table id="articleTable" class="table table-striped border">
             <thead>

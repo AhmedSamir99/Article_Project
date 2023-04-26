@@ -3,9 +3,7 @@ session_start();
 require_once '../../vendor/autoload.php'; 
 $db=new MySqlHandler('users');
 
-// $users= $db->getData(array());
 //check first if the user is logged in
-
 if(isset($_SESSION["logged"]) ==true) {
     if ($_SESSION['type'] == 'admin') {
         var_dump($_SESSION['type']); //if the user was admin , then get all the users
@@ -39,7 +37,7 @@ else{
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-end mb-3">    
-            <a href="add.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New user</a>
+            <a href="add_user_form.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New user</a>
         </div>
         <table id="usetTable" class="table table-striped border">
             <thead>
@@ -65,7 +63,7 @@ else{
                             <td><?php echo $user['group_name']; ?></td>
                             <td><?php echo $user['type']; ?></td>
                             <td>
-                            <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-info"><i class="fa fa-edit"></i>Edit </a>
+                            <a href="edit_user_form.php?id=<?php echo $user['id']; ?>" class="btn btn-info"><i class="fa fa-edit"></i>Edit </a>
 
                             <a href="#" onclick="confirmDelete(<?php echo $user['id']; ?>)" class="btn btn-danger">Delete</a>
 
