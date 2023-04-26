@@ -1,59 +1,58 @@
 <?php
 // session_start();
 // require_once '../vendor/autoload.php'; 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email=$_POST["email"];
-        $password=$_POST["password"];  
-        $dbHandler = new MySqlHandler('users');
-        $sql="select * from users where email='".$email."' and password='".$password."'"; 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email=$_POST["email"];
+    $password=$_POST["password"];
+    $dbHandler = new MySqlHandler('users');
+    function validate($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    $email = validate($_POST['email']);
+    $pass = validate($_POST['password']);
+
+    if(empty($_POST['email']) && empty($_POST['password'])) {
+        header("Location: index.php?error=data is required");
+
+    } elseif (empty($email)) {
+        header("Location: index.php?error=email is required");
+        exit();
+    }
+    //    else if (!filter_var($uname, FILTER_VALIDATE_EMAIL)) {
+    //         echo "enter valid email";}
+
+    elseif(empty($pass)) {
+        header("Location: index.php?error=Password is required");
+        exit();
+    } else {
+
+
+        $sql="select * from users where email='".$email."' and password='".$password."'";
 
         $result = $dbHandler->getResults($sql);
 
         if ($result) {
             $_SESSION['logged']=true; //the user is logged in
-            $type = $result[0]['type']; // fetch the first row of the result set
-            $_SESSION['type'] = $type;
-            if($type=="admin"){
+            // fetch the first row of the result set
+            $_SESSION['type'] = $result[0]['type'];
+            $_SESSION['name'] = $result[0]['name'];
+            $_SESSION['email'] = $result[0]['email'];
+            if($result[0]['type']=="admin") {
                 // header("Location:../index.php");
                 header("Location:views/articles/all.php");
-            }
-            elseif($type=="editor"){
+            } elseif($result[0]['type']=="editor") {
                 header("Location:views/users/all.php");
             }
         } else {
-            echo "Invalid email or password";
+            header("Location: login_form.php?error=Incorect email or password");
+            exit();
         }
     }
+}
+
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <section>
-        <div class="form-box" >
-            <div class="form-value">
-    <form id="form" action="#" method="post" name="contactForm" >
-    <div class="inputbox">
-        <input type="password" name="password" >
-        <label for="">password</label>
-    </div>
-
-    <div class="inputbox">    
-        <input type="input" name="email" >
-        <label for="">Email</label>
-
-    </div>    
-
-    <div style="display: flex; flex-direction: row;">
-        <button type="submit">Login</button> 
-    </div>
-    </form>
-</div>
-</div> 
-</section>   
-</body>
-</html>

@@ -35,6 +35,8 @@ else{
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 <body>
+<h1>Hello, <?php echo $_SESSION['name']; ?></h1>
+     <a href="../logout.php">Logout</a>
     <div class="container mt-5">
         <div class="d-flex justify-content-end mb-3">    
             <a href="add_user_form.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New user</a>
