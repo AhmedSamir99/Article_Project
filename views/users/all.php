@@ -66,9 +66,7 @@ else{
                             <td><?php echo $user['type']; ?></td>
                             <td>
                             <a href="edit_user_form.php?id=<?php echo $user['id']; ?>" class="btn btn-info"><i class="fa fa-edit"></i>Edit </a>
-
                             <a href="#" onclick="confirmDelete(<?php echo $user['id']; ?>)" class="btn btn-danger">Delete</a>
-
                             </td>
                         </tr>
                     <?php } ?>
@@ -92,5 +90,3 @@ function confirmDelete(id) {
 }
 </script>
 </body>
-
-
