@@ -4,7 +4,7 @@ include_once("group_object.php");
 if(isset($_POST['create'])) {
     $icon = "<i><img src='../../images/group.png'style='width:2vw;height:4vh'></i>";
 	$name = ($_POST['name']);
-	$description = $_POST['description'];		
+	$description = $_POST['description'];	
 	$emptyInput = $_groups_sqlhandler->check_empty($_POST, array('name', 'description'));
 
     if($emptyInput){
@@ -16,11 +16,11 @@ if(isset($_POST['create'])) {
 	else{
 		$array = array( 
             // "icon" => "<i class='bi bi-people-fill fs-3'></i>",
-            "icon" => $icon,
+            
 			"name" => $name, 
-			"description" => $description		
+			"description" => $description	
 		); 
-		$_groups_sqlhandler->insert('groups',$array);  	
+		$_groups_sqlhandler->insert($array);  	
         header("Location:index.php");
 	}  
 }

@@ -21,7 +21,7 @@ if(isset($_POST['edit'])) {
 			"name" => $name, 
 			"description" => $description		
 		); 
-		$_groups_sqlhandler->update('groups',$array, "id='$id'");  	
+		$_groups_sqlhandler->update($current_group['id'],$array);  	
 		// echo $id;
         header("Location:index.php");
 	}  

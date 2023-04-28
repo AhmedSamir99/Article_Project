@@ -17,7 +17,6 @@ class MySQLHandler implements DBHandler{
                 return false;
             }
             $this->_db_handler = $handler;
-            // die('Done network');
             return true;
         }
         catch(Exception $e)
@@ -47,23 +46,40 @@ class MySQLHandler implements DBHandler{
         return $this->getResults($sql);
     }
 
-    public function insert($table,$params=array()){
+    public function insert($params){
+        $table = $this->_table;
     	$sql='INSERT INTO `'.$table.'` (`'.implode('`, `',array_keys($params)).'`) VALUES ("' . implode('", "', $params) . '")';
-        if(mysqli_query($this->_db_handler,$sql)){
-            return true;
-        }
-        
+        return $this->executeQuery($sql);   
     }
 
-    public function update($table,$params=array(),$where){
-    		$args=array();
-			foreach($params as $field=>$value){
-				$args[]=$field.'="'.$value.'"';
-			}
-			$sql='UPDATE '.$table.' SET '.implode(',',$args).' WHERE '.$where;
-            if(mysqli_query($this->_db_handler,$sql)){
-                return true;
-            }
+    public function executeQuery($sql) {
+        $_handler_results = mysqli_query($this->_db_handler, $sql);
+        if ($_handler_results) {
+            return true;
+        } else {
+          return false;
+        }
+    }
+
+    public function update($id, $data){
+        $table = $this->_table;
+        $updateFields = '';
+        foreach ($data as $key => $value) {
+            $updateFields .= "`$key`='$value',";
+        }
+        $updateFields = rtrim($updateFields, ','); // remove the last comma
+        $sql = "update `$table` set $updateFields where `id` = $id";
+        $data = $this->get_record_by_id($id)[0];
+        return $this->executeQuery($sql);
+    }
+
+    public function delete($id) {
+        $this->connect();
+        $table = $this->_table;
+        $data = $this->get_record_by_id($id)[0];
+        $data['deleted_at'] = date('Y-m-d H:i:s');
+        $this->update($id, $data);
+       
     }
 
     public function getResults($sql){
@@ -81,6 +97,16 @@ class MySQLHandler implements DBHandler{
             $_results[] = array_change_key_case($record);//store each row for ecach index
         }
         return $_results;
+    }
+
+    public function restore($id) {
+        $this->connect();
+        $table = $this->_table;
+        $data = $this->get_record_by_id($id)[0];
+        $data['deleted_at'] = null;
+        echo $data['deleted_at'];
+        $this->update($id, $data);
+       
     }
 
     public function check_empty($data, $fields) {
