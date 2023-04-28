@@ -1,7 +1,7 @@
 <?php
 include_once("group_object.php");
 
-if(isset($_POST['submit'])) {
+if(isset($_POST['create'])) {
     $icon = "<i><img src='../../images/group.png'style='width:2vw;height:4vh'></i>";
 	$name = ($_POST['name']);
 	$description = $_POST['description'];		
@@ -54,7 +54,7 @@ if(isset($_POST['submit'])) {
                 <div class="mb-3">
                 <textarea name="description" class="form-control" placeholder="Leave a description here....." id="floatingTextarea" style="height: 25vh"></textarea>
                 </div>
-                <button type="submit" name="submit" class="btn btn-primary">Create</button>
+                <button type="submit" name="create" class="btn btn-primary">Create</button>
             </form>
         </div>
     </div>
