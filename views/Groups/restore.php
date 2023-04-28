@@ -1,9 +1,12 @@
 <?php
-
 include_once("group_object.php");
+if(isset($_GET["id"])){
+    $id = intval($_GET["id"]);
+    $_groups_sqlhandler->restore($id);
+}
 $groups = $_groups_sqlhandler->getRecords(array());
-
 ?>
+
 <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
@@ -19,10 +22,6 @@ $groups = $_groups_sqlhandler->getRecords(array());
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 <body>
     <div class="container mt-5">
-        <div class="d-flex justify-content-end mb-3">    
-            <a href="restore.php"  class="btn btn-dark" ><i class="fa fa-restore"></i>All Deleted Groups</a>
-            <a href="create.php"  class="btn btn-success" ><i class="fa fa-create"></i>Create New Group</a>
-        </div>
         <table id="usetTable" class="table table-striped border">
             <thead>
                 <th>#</th>
@@ -35,21 +34,18 @@ $groups = $_groups_sqlhandler->getRecords(array());
                 <?php if(!empty($groups)) { ?>
                     
                     <?php foreach($groups as $group) { ?>
+                        <?php if ($group['deleted_at'] != NULL) {?>
                         <tr>
-                        <?php
-                            if( $group['deleted_at'] == NULL) {?>
-                                <td><?php echo $group['id']; ?></td>
-                                <!-- <td><img src="<?php echo "../../images/" .$group["icon"]; ?>" height="40vh"></td> -->
-                                <td><i><img src='../../images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
-                                <span class="fs-5"><?php echo $group['name']; ?></td>
-                                <td><?php echo $group['description']; ?></td>
-                                <td>
-                                    <a href="edit.php?id=<?=$group["id"]?>"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a>
-                            
-                                            <a href="delete.php?id=<?=$group["id"]?>" class="btn btn-danger" ><i class="fa fa-trash"></i>Delete</a>
-                                </td>
-                           <?php } ?>
+                            <td><?php echo $group['id']; ?></td>
+                            <!-- <td><img src="<?php echo "../../images/" .$group["icon"]; ?>" height="40vh"></td> -->
+                            <td><i><img src='../../images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
+                            <span class="fs-5"><?php echo $group['name']; ?></td>
+                            <td><?php echo $group['description']; ?></td>
+                            <td>
+                                <a href="restore.php?id=<?=$group["id"]?>" class="btn btn-success" ><i class="fa fa-restore"></i>Restore</a>
+                            </td>
                         </tr>
+                        <?php } ?>
                     <?php } ?>
                 <?php } ?>
             </tbody>

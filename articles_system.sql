@@ -54,19 +54,24 @@ INSERT INTO `articles` (`id`, `title`, `summary`, `image`, `body`, `publish_date
 
 CREATE TABLE `groups` (
   `id` int(11) NOT NULL,
-  `icon` varchar(255) DEFAULT NULL,
+  -- `icon` varchar(255) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL
+  `description` varchar(255) NOT NULL,
+  `deleted_at` varchar(255) NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `groups`
 --
+INSERT INTO `groups` (`id`, `name`, `description`) VALUES
+(1, 'Admins', 'This is a group form admins only'),
+(2,  'Editors', 'This is a group for editors only'),
+(3,  'Group3', 'This is Group3');
 
-INSERT INTO `groups` (`id`, `icon`, `name`, `description`) VALUES
-(1, '<i><img src="../../images/group.png"style="width:2vw;height:4vh"></i>', 'Admins', 'This is a group form admins only'),
-(2, '<i><img src="../../images/group.png"style="width:2vw;height:4vh"></i>', 'Editors', 'This is a group for editors only'),
-(3, '<i><img src="../../images/group.png"style="width:2vw;height:4vh"></i>', 'Group3', 'This is Group3');
+-- INSERT INTO `groups` (`id`, `icon`, `name`, `description`) VALUES
+-- (1, '<i><img src="../../images/group.png"style="width:2vw;height:4vh"></i>', 'Admins', 'This is a group form admins only'),
+-- (2, '<i><img src="../../images/group.png"style="width:2vw;height:4vh"></i>', 'Editors', 'This is a group for editors only'),
+-- (3, '<i><img src="../../images/group.png"style="width:2vw;height:4vh"></i>', 'Group3', 'This is Group3');
 
 -- --------------------------------------------------------
 
