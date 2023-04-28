@@ -1,7 +1,7 @@
 <?php
 require_once '../../vendor/autoload.php'; 
 $db = new MySqlHandler('users');
-try {
+
     $id = (isset($_GET["id"])) ? intval($_GET["id"]) : 0;
     $user = $db->getRecordById($id)[0];
 
@@ -18,7 +18,5 @@ try {
             break;
         }
     }
-}catch (Exception $e) {
-    die("something went wrong");
-}
+
 ?>

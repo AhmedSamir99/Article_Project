@@ -27,13 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $error_username = validateUsername($username);
 
     if ($error_name == "" && $error_message == "" && $error_email == "" && $error_number == "" && $error_password == "" && $error_username == "") {
-try {
+
     $sql = "INSERT INTO users (name, email, mobile_number,password,username, type, group_id) VALUES ('$name', '$email', '$mobilenumber','$password','$username', '$type', '$group_id')";
     $result = $dbHandler->executeQuery($sql);
     header("Location:all.php");
-} catch  (Exception $e) {
-    $error_message = "An error occurred while processing your request. Please try again later.";
-}
         
     }
 }
