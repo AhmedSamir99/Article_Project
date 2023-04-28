@@ -11,8 +11,7 @@ class MySqlHandler implements DbHandler{
 
     public function connect(){
     try{
-        
-    $handler= mysqli_connect(HOST, USER, PASS, DB);
+        $handler= mysqli_connect(HOST, USER, PASS, DB);
     if ($handler) {
         $this->_db_handler= $handler;
         return true;
@@ -22,7 +21,7 @@ class MySqlHandler implements DbHandler{
     }
 }
     catch(Exception $e) {
-        die("something went wrong, please try again");
+        die("An error occurred while processing your request. Please try again later.");
         }
     }
 
@@ -79,8 +78,6 @@ public function executeQuery($sql) {
     $_handler_results = mysqli_query($this->_db_handler, $sql);
   
     if ($_handler_results) {
-        // $num_rows = mysqli_num_rows($_handler_results);
-        // return $num_rows;
         return true;
        
     } else {

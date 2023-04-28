@@ -1,6 +1,4 @@
 <?php
-// session_start();
-// require_once '../vendor/autoload.php'; 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email=$_POST["email"];
     $password=$_POST["password"];

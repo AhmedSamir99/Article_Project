@@ -1,26 +1,34 @@
 <?php
 session_start();
 require_once '../../vendor/autoload.php'; 
-$db=new MySqlHandler('users');
+$db = new MySqlHandler('');
 
 //check first if the user is logged in
 if(isset($_SESSION["logged"]) ==true) {
     if ($_SESSION['type'] == 'admin') {
-        var_dump($_SESSION['type']); //if the user was admin , then get all the users
-         //join groups table to i can get the group name instead of group id
-        $sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_id = g.id";
-        $users= $db->getResults($sql);
+    //if the user was admin , then get all the users
+        try {
+            //join groups table to i can get the group name instead of group id
+            $sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_id = g.id";
+            $users = $db->getResults($sql);
+        } catch(Exception $e) {
+            die("An error occurred while processing your request. Please try again later.");
+        }
 
     } elseif($_SESSION['type'] == 'editor') {
-        var_dump($_SESSION['type']); //if the user was editor , then get the users with type editor
-        $sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_id = g.id WHERE u.type ='editor'";
-        $users= $db->getResults($sql);
+  //if the user was editor , then get the users with type editor
+        try {
+            $sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_id = g.id WHERE u.type ='editor'";
+            $users = $db->getResults($sql);
+        } catch(Exception $e) {
+            die("An error occurred while processing your request. Please try again later.");
+        }
     }
-    
-}
-else{
+} 
+else {
     die ("you are not allowed to see this page");
 }
+
 ?>
     <link
         rel="stylesheet"

@@ -6,5 +6,4 @@ if(isset($_GET['id']) && isset($_GET['confirm']) && $_GET['confirm'] == 'true') 
     $db->deleteRecordById($id);
     header("Location:all.php");
 }
-
 ?>
