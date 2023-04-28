@@ -40,15 +40,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['type'] = $result[0]['type'];
             $_SESSION['name'] = $result[0]['name'];
             $_SESSION['email'] = $result[0]['email'];
+            $user=$result[0];
+            $_SESSION['user']=$user;
             if($result[0]['type']=="admin") {
-                // header("Location:../index.php");
-                header("Location:views/articles/all.php");
+                    header("Location:views/articles/all.php");
             } elseif($result[0]['type']=="editor") {
                 header("Location:views/users/all.php");
             }
-            elseif($type=="user"){
+            elseif($result[0]['type']=="user"){
                 header("Location:views/users/welcome.php");
-                // header("Location:views/users/profile.php");
             }
 
         } else {
