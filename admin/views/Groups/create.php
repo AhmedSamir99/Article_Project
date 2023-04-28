@@ -21,7 +21,11 @@ if(isset($_POST['create'])) {
 			"description" => $description	
 		); 
 		$_groups_sqlhandler->insert($array);  	
-        header("Location:index.php");
+        ?>
+       <script>
+    window.location.href = "groups.php";
+    </script>
+       <?php
 	}  
 }
 ?>

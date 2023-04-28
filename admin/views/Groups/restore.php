@@ -38,11 +38,11 @@ $groups = $_groups_sqlhandler->getRecords(array());
                         <tr>
                             <td><?php echo $group['id']; ?></td>
                             <!-- <td><img src="<?php echo "../../images/" .$group["icon"]; ?>" height="40vh"></td> -->
-                            <td><i><img src='../../images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
+                            <td><i><img src='images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
                             <span class="fs-5"><?php echo $group['name']; ?></td>
                             <td><?php echo $group['description']; ?></td>
                             <td>
-                                <a href="restore.php?id=<?=$group["id"]?>" class="btn btn-success" ><i class="fa fa-restore"></i>Restore</a>
+                                <a href="restore_group.php?id=<?=$group["id"]?>" class="btn btn-success" ><i class="fa fa-restore"></i>Restore</a>
                             </td>
                         </tr>
                         <?php } ?>

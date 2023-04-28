@@ -1,6 +1,4 @@
 <?php
-include(__DIR__ . '\..\..\includes\header.php');
-include(__DIR__ . '\..\..\includes\navbar.php');
 include_once("group_object.php");
 $id = (isset($_GET["id"]))? intval($_GET["id"])  : 0;
 $current_group = $_groups_sqlhandler-> get_record_by_id($id)[0];
@@ -21,9 +19,12 @@ if(isset($_POST['edit'])) {
 			"name" => $name, 
 			"description" => $description		
 		); 
-		$_groups_sqlhandler->update($current_group['id'],$array);  	
-		// echo $id;
-        header("Location:index.php");
+		$_groups_sqlhandler->update($current_group['id'],$array);  
+       ?>
+       <script>
+    window.location.href = "groups.php";
+    </script>
+       <?php
 	}  
 }
 ?>

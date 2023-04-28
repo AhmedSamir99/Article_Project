@@ -18,11 +18,12 @@ $users = $_users_sqlhandler->getRecords(array());
     crossorigin="anonymous"
 />
 
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h2><i><img src='images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
+        <span class="fs-2"><?php echo $current_group['name']; ?></h2>
+      </div>
 <div class='container'>
     
-    <h2><i><img src='../../images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
-        <span class="fs-2"><?php echo $current_group['name']; ?></h2>
-    <hr>
     <p class="fs-3"><?php echo $current_group['description']; ?></p>
 
     <div class="card" style="width: 20rem;">

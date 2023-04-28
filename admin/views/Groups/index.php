@@ -1,63 +1,68 @@
 <?php
-include_once(__DIR__ . '\group_object.php');
+
+include_once("group_object.php");
 $groups = $_groups_sqlhandler->getRecords(array());
 
 ?>
+<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
 
-    <div class="container mt-5 ">
-        <div class=" d-flex justify-content-end mb-3">    
-            <a href="create.php" class="btn btn-success"><i class="bi bi-plus"></i>Create New Group</a>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+<style>
+    .single_group{
+        text-decoration:none;  
+        color: black ;
+    }
+</style>
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-end mb-3 gap-1">    
+            <a href="create_group.php"  class="btn btn-success" ><i class="fa fa-create"></i>Create New Group</a>
+            <a href="restore_group.php"  class="btn btn-dark" ><i class="fa fa-restore"></i>All Deleted Groups</a>
         </div>
-        <table id="groupTable" class="table table-striped border">
+        <table id="usetTable" class="table table-striped border">
             <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Group Name</th>
-                    <th>Group Description</th>
-                    <th>Actions</th>
-                </tr>
+                <th>#</th>
+                <!-- <th>Group Icon</th> -->
+                <th>Group Name</th>
+                <th>Group Description</th>
+                <th>Actions</th>
             </thead>
             <tbody>
-                <?php if (!empty($groups)) { ?>
-                    <?php foreach ($groups as $group) { ?>
+                <?php if(!empty($groups)) { ?>
+                    
+                    <?php foreach($groups as $group) { ?>
                         <tr>
-                            <td><?php echo $group['id']; ?></td>
-                            <td>
-                                <?php echo $group['icon']; ?>&nbsp;
-                                <span class="fs-5"><?php echo $group['name']; ?></span>
-                            </td>
-                            <td><?php echo $group['description']; ?></td>
-                            <td>
-                                <a href="#" class="btn btn-info edit-group" data-group-id="<?php echo $group['id']; ?>"><i class="bi bi-pencil"></i>Edit</a>
-                                <a href="#" class="btn btn-danger delete-group" data-group-id="<?php echo $group['id']; ?>"><i class="bi bi-trash"></i>Delete</a>
-                            </td>
+                        <?php
+                            if( $group['deleted_at'] == NULL) {?>
+                                <td><?php echo $group['id']; ?></td>
+                                <td><i><img src='images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
+                                <span class="fs-5"><a href="single_group.php?id=<?=$group["id"]?>" class="single_group"><?php echo $group['name']; ?></a></td>
+                                <td><?php echo $group['description']; ?></td>
+                                <td>
+                                    <a href="edit_group.php?id=<?=$group["id"]?>"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a>
+                                    <a href="delete_group.php?id=<?=$group["id"]?>" class="btn btn-danger" ><i class="fa fa-trash"></i>Delete</a>
+                                </td>
+                           <?php } ?>
                         </tr>
                     <?php } ?>
                 <?php } ?>
             </tbody>
         </table>
     </div>
-   
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-    <script>
+ <script>
         $(document).ready(function() {
-            $('#groupTable').DataTable();
-
-            $('.edit-group').click(function(e) {
-                e.preventDefault();
-                var groupId = $(this).data('group-id');
-                // Redirect to edit page with the group ID
-                window.location.href = 'edit.php?id=' + groupId;
-            });
-
-            $('.delete-group').click(function(e) {
-                e.preventDefault();
-                var groupId = $(this).data('group-id');
-                // Show confirmation dialog and delete the group if confirmed
-                if (confirm('Are you sure you want to delete this group?')) {
-                    // Delete the group using AJAX or form submission
-                }
-            });
-        });
+            $('#usetTable').DataTable();
+        } );
     </script>
+</body>
