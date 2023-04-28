@@ -1,19 +1,6 @@
 <?php
 session_start();
 require_once '../../vendor/autoload.php'; 
-// check if last visit is stored in session
-// if (isset($_SESSION['last_visit'])) {
-//     $lastVisit = $_SESSION['last_visit'];
-//     echo "Welcome back! Your last visit was on $lastVisit";
-// } else {
-//     echo "Welcome to our website!";
-// }
-
-// $login_time= date('F j, Y, g:i a');
-// $sql="INSERT INTO users (last_visit) VALUES ('$login_time') where id=$_SESSION['user']['id']";
-// set current time as last visit
-// $_SESSION['last_visit'] = date('F j, Y, g:i a');
-
 
 
 $db = new MySqlHandler("users");
@@ -25,15 +12,32 @@ $sql1="SELECT last_visit FROM users WHERE id='$user_id'";
 $ArrayOFLastVist = $db->getResults($sql1);
 $last_visit = $ArrayOFLastVist[0]['last_visit'];
 if($last_visit){
-    echo "Welcome back! Your last visit was on $last_visit";
+    echo "
+    <div style='background-color:gray; padding:20px;
+     text-align:center;
+     color:white;      
+     width:75%;
+     margin:auto;
+     border-radius:20px;
+     margin-top:10%;        
+    '>
+        <h1>
+            Welcome back! Your last visit was on $last_visit
+        </h1>
+    </div>
+    ";
 }
 else {
-    echo "Welcome to our website!";
+    echo " 
+    <h1>
+    Welcome to our website!
+    </h1>
+
+    ";
 }
 
 $sql2 = "UPDATE users SET last_visit = '$login_time' WHERE id = '$user_id'";
 $result= $db->executeQuery($sql2);
-
 
 
 

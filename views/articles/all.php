@@ -3,6 +3,8 @@ session_start();
 require_once '../../vendor/autoload.php'; 
 
 $articles= new MySqlHandler("articles");
+
+
 //check first if the user is logged in
 if(isset($_SESSION["logged"]) ==true) {
     if ($_SESSION['type'] == 'admin') {

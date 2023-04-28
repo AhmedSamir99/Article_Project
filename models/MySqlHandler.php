@@ -1,28 +1,40 @@
 <?php
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+// create a log channel
+
+
 
 class MySqlHandler implements DbHandler{
     private $_db_handler;
     private $_table;
+    private $_log;
 
+    private $path="../../";
     public function __construct($table){
         $this->_table= $table;
+        $this->_log = new Logger('exceptions');
+        $this->_log->pushHandler(new StreamHandler($this->path.'exceptions.log', Logger::DEBUG));
         $this->connect();
     }
 
     public function connect(){
         try{
             $handler= mysqli_connect(HOST, USER, PASS, DB);
-            if ($handler) {
-                $this->_db_handler= $handler;
-                return true;
-            } else {
-                echo "Could not connect to MySQL<br/>";
-                return false;
-            }
-        } catch(Exception $e) {
-            die("An error occurred while processing your request. Please try again later.");
+        if ($handler) {
+            $this->_db_handler= $handler;
+            return true;
+        } else {
+            echo "Could not connect to MySQL<br/>";
+            return false;
         }
     }
+        catch(Exception $e) {
+            $this->_log->error($e->getMessage(), ['exception' => $e]);
+            die("An error occurred while processing your request. Please try again later.");
+            }
+        }
 
     public function disconnect() {
         try {
@@ -32,6 +44,7 @@ class MySqlHandler implements DbHandler{
             }
             return true;
         } catch(Exception $e) {
+            $this->_log->error($e->getMessage(), ['exception' => $e]);
             die("An error occurred while processing your request. Please try again later.");
         }
     }
@@ -54,6 +67,7 @@ class MySqlHandler implements DbHandler{
         try {
             return $this->getResults($sql);
         } catch(Exception $e) {
+            $this->_log->error($e->getMessage(), ['exception' => $e]);
             die("An error occurred while processing your request. Please try again later.");
         }
     }
@@ -65,8 +79,8 @@ class MySqlHandler implements DbHandler{
         try {
             return $this->getResults($sql);
         } catch(Exception $e) {
-            die("An error occurred while processing your request. Please try again later.");
-        }
+            $this->_log->error($e->getMessage(), ['exception' => $e]);
+            die("An error occurred while processing your request. Please try again later.");        }
     }
 
     public function getResults($sql){
@@ -88,8 +102,8 @@ class MySqlHandler implements DbHandler{
                 return false;
             }
         } catch(Exception $e) {
-            die("An error occurred while processing your request. Please try again later.");
-        }
+            $this->_log->error($e->getMessage(), ['exception' => $e]);
+            die("An error occurred while processing your request. Please try again later.");        }
     }
 
     public function executeQuery($sql) {
@@ -102,8 +116,8 @@ class MySqlHandler implements DbHandler{
                 return false;
             }
         } catch(Exception $e) {
-            die("An error occurred while processing your request. Please try again later.");
-        }
+            $this->_log->error($e->getMessage(), ['exception' => $e]);
+            die("An error occurred while processing your request. Please try again later.");        }
     }
 
     public function deleteRecordById($id, $primary_key = "id") {
@@ -113,8 +127,8 @@ class MySqlHandler implements DbHandler{
         try {
             return $this->executeQuery($sql);
         } catch(Exception $e) {
-            die("An error occurred while processing your request. Please try again later.");
-        }
+            $this->_log->error($e->getMessage(), ['exception' => $e]);
+            die("An error occurred while processing your request. Please try again later.");        }
    
     }
 }

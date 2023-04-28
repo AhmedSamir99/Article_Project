@@ -1,6 +1,8 @@
 {
 
-    "require": {},
+    "require": {
+        "monolog/monolog": "^3.3"
+    },
     "autoload": {
         "classmap": ["models"],
         "files": ["config.php", "functions.php"]

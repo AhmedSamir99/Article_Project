@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>LOGIN</title>
-    <link rel="stylesheet" type="text/css" href="views/style.css">
+    <link rel="stylesheet" type="text/css" href="views/login/style.css">
 </head>
 <body>
      <form  method="post">
