@@ -15,13 +15,18 @@ $groups = $_groups_sqlhandler->getRecords(array());
       crossorigin="anonymous"
     />
 
-
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+<style>
+    .single_group{
+        text-decoration:none;  
+        color: black ;
+    }
+</style>
 <body>
     <div class="container mt-5">
-        <div class="d-flex justify-content-end mb-3">    
-            <a href="restore.php"  class="btn btn-dark" ><i class="fa fa-restore"></i>All Deleted Groups</a>
+        <div class="d-flex justify-content-end mb-3 gap-1">    
             <a href="create.php"  class="btn btn-success" ><i class="fa fa-create"></i>Create New Group</a>
+            <a href="restore.php"  class="btn btn-dark" ><i class="fa fa-restore"></i>All Deleted Groups</a>
         </div>
         <table id="usetTable" class="table table-striped border">
             <thead>
@@ -39,14 +44,12 @@ $groups = $_groups_sqlhandler->getRecords(array());
                         <?php
                             if( $group['deleted_at'] == NULL) {?>
                                 <td><?php echo $group['id']; ?></td>
-                                <!-- <td><img src="<?php echo "../../images/" .$group["icon"]; ?>" height="40vh"></td> -->
                                 <td><i><img src='../../images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
-                                <span class="fs-5"><?php echo $group['name']; ?></td>
+                                <span class="fs-5"><a href="single_group.php?id=<?=$group["id"]?>" class="single_group"><?php echo $group['name']; ?></a></td>
                                 <td><?php echo $group['description']; ?></td>
                                 <td>
                                     <a href="edit.php?id=<?=$group["id"]?>"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a>
-                            
-                                            <a href="delete.php?id=<?=$group["id"]?>" class="btn btn-danger" ><i class="fa fa-trash"></i>Delete</a>
+                                    <a href="delete.php?id=<?=$group["id"]?>" class="btn btn-danger" ><i class="fa fa-trash"></i>Delete</a>
                                 </td>
                            <?php } ?>
                         </tr>
