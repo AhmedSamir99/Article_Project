@@ -1,6 +1,4 @@
 <?php
-include(__DIR__ . '\..\..\includes\header.php');
-include(__DIR__ . '\..\..\includes\navbar.php');
 include_once(__DIR__ . '\group_object.php');
 $groups = $_groups_sqlhandler->getRecords(array());
 
@@ -63,7 +61,3 @@ $groups = $_groups_sqlhandler->getRecords(array());
             });
         });
     </script>
-<?php
-include(__DIR__ . '\..\..\includes\scripts.php');
-include(__DIR__ . '\..\..\includes\footer.php');
-?>

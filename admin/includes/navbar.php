@@ -28,7 +28,8 @@
 
 
 <li class="nav-item">
-  <a class="nav-link" href="views/Groups/index.php">
+  
+  <a class="nav-link" href="groups.php">  <!-- href="views/Groups/index.php"  -->
     <i class="fas fa-fw fa-users"></i>
     <span>groups</span></a>
 </li>
