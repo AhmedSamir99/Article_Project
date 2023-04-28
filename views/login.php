@@ -46,6 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } elseif($result[0]['type']=="editor") {
                 header("Location:views/users/all.php");
             }
+            elseif($type=="user"){
+                header("Location:views/users/welcome.php");
+                // header("Location:views/users/profile.php");
+            }
+
         } else {
             header("Location: login_form.php?error=Incorect email or password");
             exit();
