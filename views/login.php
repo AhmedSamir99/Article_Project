@@ -9,7 +9,7 @@ function generateRandomString($length = 15) {
 	for ($i = 0; $i < $length; $i++) {
 		$randomString .= $characters[rand(0, $charactersLength - 1)];
 	}
-	return $randomString;
+	return $randomString;//to get me 15 random no
 }
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
@@ -34,8 +34,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 	    exit();
 	}
 	else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-         echo "enter valid email";}
-    
+		header("Location: index.php?error=email is not valid");
+	    exit();
+    }
     else if(empty($pass)){
         header("Location: index.php?error=Password is required");
 	    exit();
@@ -51,6 +52,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 				
 				$sql = "UPDATE users SET token='$token' WHERE email='$email' AND password='$pass'";
 				$result = mysqli_query($conn, $sql);
+				setcookie('token', $token, time() + (86400 * 30), "/"); // 86400 = 1 day
+
             	$_SESSION['email'] = $row['email'];
             	$_SESSION['name'] = $row['name'];
             	$_SESSION['id'] = $row['id'];

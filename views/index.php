@@ -43,7 +43,7 @@ if(isset($_COOKIE['token'])){
        <div class="form-group">
        <input type="checkbox" name="rememberMe" id="rememberMe"> <label for="rememberMe">Remember me
 </div>
-        <a href="forgot_password.php" class="link-primary"> forgot password</a>
+<label for="forgotpassword"><a href="forgot.php">Forgot password?</a></label>
      </form>
 </body>
 </html>
