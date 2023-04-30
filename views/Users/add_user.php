@@ -30,7 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "INSERT INTO users (name, email, mobile_number,password,username, type, group_id) VALUES ('$name', '$email', '$mobilenumber','$password','$username', '$type', '$group_id')";
     $result = $dbHandler->executeQuery($sql);
-    header("Location:all.php");
+    ?>
+    <script>
+        window.location.href="all.php";
+    </script>
+    <?php
         
     }
 }

@@ -30,7 +30,7 @@ else {
     
     <div class="container mt-5">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user "></i>Users</h1>
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user-friends "></i>Users</h1>
       </div>
         <div class="d-flex justify-content-end mb-3">    
             <a href="add_user_form.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New user</a>

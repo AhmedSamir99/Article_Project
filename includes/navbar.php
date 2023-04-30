@@ -35,12 +35,24 @@
 </li>
 
 
-
+<?php
+if($_SESSION['user']['type']=="admin"||$_SESSION['user']['type']=="editor")
+{
+  echo('
 <!-- Nav Item - Admin -->
 <li class="nav-item">
   <a class="nav-link" href="../../views/Users/all.php">
-    <i class="fas fa-fw fa-user "></i>
+    <i class="fas fa-fw fa-user-friends  "></i>
     <span>Users</span></a>
+</li>
+');
+}
+?>
+
+<li class="nav-item">
+  <a class="nav-link" href="../../views/Users/profile.php">
+    <i class="fas fa-fw fa-user"></i>
+    <span>Profile</span></a>
 </li>
 <?php
 if($_SESSION['user']['type']=="admin"||$_SESSION['user']['type']=="editor")
@@ -63,6 +75,16 @@ if($_SESSION['user']['type']=="admin"||$_SESSION['user']['type']=="editor")
   <a class="nav-link" href="../../views/Extra/chart.php">
     <i class="fas fa-fw fa-chart-area"></i>
     <span>Charts</span></a>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider bg-light">
+
+<li class="nav-item">
+<a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm "></i>
+                  Logout
+                </a>
 </li>
 
 
