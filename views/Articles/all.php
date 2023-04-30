@@ -31,7 +31,7 @@ else{
             <a href="add_article_form.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New Article</a>
             <a href="restore.php"  class="btn btn-dark" ><i class="fa fa-restore"></i>All Deleted Articles</a>
         </div>
-        <table id="articleTable" class="table table-striped border ">
+        <table id="usetTable" class="table table-striped border ">
             <thead>
                 <th>#</th>
                 <th>Title</th>
@@ -68,7 +68,9 @@ else{
         </table>
     </div>
 
-     <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+ <script>
         $(document).ready(function() {
             $('#usetTable').DataTable();
         } );
