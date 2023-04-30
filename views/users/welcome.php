@@ -2,17 +2,17 @@
 session_start();
 
 // check if last visit is stored in session
-// if (isset($_SESSION['last_visit'])) {
-//     $lastVisit = $_SESSION['last_visit'];
-//     echo "Welcome back! Your last visit was on $lastVisit";
-// } else {
-//     echo "Welcome to our website!";
-// }
+if (isset($_SESSION['last_visit'])) {
+    $lastVisit = $_SESSION['last_visit'];
+    echo "Welcome back! Your last visit was on $lastVisit";
+} else {
+    echo "Welcome to our website!";
+}
 
 // $login_time= date('F j, Y, g:i a');
 // $sql="INSERT INTO users (last_visit) VALUES ('$login_time') where id=$_SESSION['user']['id']";
 // set current time as last visit
-// $_SESSION['last_visit'] = date('F j, Y, g:i a');
+$_SESSION['last_visit'] = date('F j, Y, g:i a');
 ?>
 
 <!DOCTYPE html>

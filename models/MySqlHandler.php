@@ -102,5 +102,9 @@ public function updateRecord($id, $data) {
     $sql = "update `$table` set $updateFields where `id` = $id";
     return $this->executeQuery($sql);
 }
+
+
+
 }
+
 ?>
