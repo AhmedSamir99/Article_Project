@@ -1,3 +1,15 @@
+<?php
+ if(isset($_COOKIE['token'])){
+    $token = $_COOKIE['token'];
+    $sql = "SELECT * FROM users WHERE token='$token'";
+    $result = $dbHandler->executeQuery($sql);
+    if ($result) {
+        $result = $dbHandler->getResults($sql);
+        $email = $result[0]['email'];
+        $password = $result[0]['password'];
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +33,10 @@
         <input type="password" name="password" placeholder="Password"><br>
 
         <button type="submit">Login</button>
+        <div class="form-group">
+            <input type="checkbox" name="rememberMe" id="rememberMe">
+            <label for="rememberMe">Remember me</label>
+        </div>
      </form>
 </body>
 </html>

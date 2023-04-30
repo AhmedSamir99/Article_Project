@@ -1,9 +1,20 @@
 <?php
 
+function generateRandomString($length = 15) {
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$charactersLength = strlen($characters);
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+		$randomString .= $characters[rand(0, $charactersLength - 1)];
+	}
+	return $randomString;//to get me 15 random no
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email=$_POST["email"];
     $password=$_POST["password"];
-    
+
+
 
     function validate($data)
     {
@@ -22,29 +33,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (empty($email)) {
         header("Location: index.php?error=email is required");
         exit();
-    }
-    //    else if (!filter_var($uname, FILTER_VALIDATE_EMAIL)) {
-    //         echo "enter valid email";}
-
-    elseif(empty($pass)) {
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header("Location: index.php?error=email is not valid");
+        exit();
+    } elseif(empty($pass)) {
         header("Location: index.php?error=Password is required");
         exit();
     } else {
 
 
-        $sql="select * from users where email='".$email."' and password='".$password."'";
+        $sql = "SELECT * FROM users WHERE email='$email' AND password='$pass'";
+        $result = $dbHandler->executeQuery($sql);
 
-        $result = $dbHandler->getResults($sql);
 
         if ($result) {
-            $_SESSION['logged']=true; //the user is logged in
-            $_SESSION['type'] = $result[0]['type'];
-            $_SESSION['name'] = $result[0]['name'];
-            $_SESSION['email'] = $result[0]['email'];
-            $user=$result[0];
-            $_SESSION['user']=$user;
-            header("Location:views/Extra/dashboard.php");
-            exit();
+            $result = $dbHandler->getResults($sql);
+            $row=$result[0];
+            if ($result[0]['email'] === $email && $result[0]['password'] === $pass) {
+                $token = generateRandomString(7);
+
+                $sql = "UPDATE users SET token='$token' WHERE email='$email' AND password='$pass'";
+                $result=$dbHandler->executeQuery($sql);
+                    setcookie('token', $token, time() + (86400 * 30), "/");
+
+                $_SESSION['logged']=true; //the user is logged in
+                $_SESSION['type'] = $row['type'];
+                $_SESSION['name'] = $row['name'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['user']=$row;
+                header("Location:views/Extra/dashboard.php");
+                exit();
+            }
         }
     }
 }

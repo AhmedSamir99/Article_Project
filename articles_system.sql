@@ -89,8 +89,8 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `group_id` int(255) NOT NULL,
   `deleted_at` varchar(255) NULL DEFAULT NULL,
-   `token` varchar(255) DEFAULT NULL,
-   `group_subscription_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `token` varchar(255) DEFAULT NULL,
+  `group_subscription_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `last_visit` varchar(255) DEFAULT NULL,
   `type` enum('user','admin','editor') NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
