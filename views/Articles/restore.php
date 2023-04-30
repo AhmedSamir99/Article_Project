@@ -2,12 +2,13 @@
 include('../../includes/header.php'); 
 include('../../includes/navbar.php');  
 require_once '../../vendor/autoload.php'; 
-include_once("group_object.php");
+$db = new MySqlHandler('articles');
 if(isset($_GET["id"])){
     $id = intval($_GET["id"]);
-    $_groups_sqlhandler->restore($id);
+    $db->restore($id);
 }
-$groups = $_groups_sqlhandler->getData(array());
+$articles = $db->getData(array());
+       
 ?>
 
 <link
@@ -26,27 +27,32 @@ $groups = $_groups_sqlhandler->getData(array());
 <body>
     <div class="container mt-5">
         <table id="usetTable" class="table table-striped border">
-            <thead>
+        <thead>
                 <th>#</th>
-                <!-- <th>Group Icon</th> -->
-                <th>Group Name</th>
-                <th>Group Description</th>
+                <th>Title</th>
+                <!-- <th>Summary</th> -->
+                <th>image</th>
+                <!-- <th>Body</th> -->
+                <th>User Id</th>
+                <th>publish DATE</th>
                 <th>Actions</th>
-            </thead>
+        </thead>
             <tbody>
-                <?php if(!empty($groups)) { ?>
+                <?php if(!empty($articles)) { ?>
                     
-                    <?php foreach($groups as $group) { ?>
-                        <?php if ($group['deleted_at'] != NULL) {?>
+                    <?php foreach($articles as $article) { ?>
+                        <?php if ($article['deleted_at'] != NULL) {?>
                         <tr>
-                            <td><?php echo $group['id']; ?></td>
-                            <!-- <td><img src="<?php echo "../../images/" .$group["icon"]; ?>" height="40vh"></td> -->
-                            <td><i><img src='../../images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
-                            <span class="fs-5"><?php echo $group['name']; ?></td>
-                            <td><?php echo $group['description']; ?></td>
-                            <td>
-                                <a href="restore.php?id=<?=$group["id"]?>" class="btn btn-success" ><i class="fa fa-undo "></i></a>
-                            </td>
+                        <td><?php echo $article['id']; ?></td>
+                                <td><?php echo $article['title']; ?></td>
+                                <!-- <td><?php echo $article['summary']; ?></td> -->
+                                <td><img src="<?php echo "../../images/" .$article["image"]; ?>" style="height:50px ;width: 50px"></td>
+                                <!-- <td><?php echo $article['body']; ?></td> -->
+                                <td><?php echo $article['user_id']; ?></td>
+                                <td><?php echo $article['publish_date']; ?></td>
+                                <td>
+                                <a href="restore.php?id=<?=$article["id"]?>" class="btn btn-success" ><i class="fa fa-undo "></i></a>
+                                </td>
                         </tr>
                         <?php } ?>
                     <?php } ?>

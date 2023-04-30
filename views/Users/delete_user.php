@@ -1,9 +1,10 @@
 <?php
 require_once '../../vendor/autoload.php'; 
-if(isset($_GET['id']) && isset($_GET['confirm']) && $_GET['confirm'] == 'true') {
-    $id = $_GET['id'];
-    $db = new MySqlHandler('users');
-    $db->deleteRecordById($id);
-    header("Location:all.php");
-}
+$db = new MySqlHandler('users');
+$id = (isset($_GET["id"]))? intval($_GET["id"])  : 0;
+$db->delete($id);
 ?>
+<script>
+window.location.href = "all.php";
+</script>
+

@@ -50,8 +50,8 @@ $groups = $_groups_sqlhandler->getData(array());
                                 <span class="fs-5"><a href="single_group.php?id=<?=$group["id"]?>" class="single_group"><?php echo $group['name']; ?></a></td>
                                 <td><?php echo $group['description']; ?></td>
                                 <td>
-                                    <a href="edit.php?id=<?=$group["id"]?>"  class="btn btn-info" ><i class="fa fa-edit"></i>Edit </a>
-                                    <a href="delete.php?id=<?=$group["id"]?>" class="btn btn-danger" ><i class="fa fa-trash"></i>Delete</a>
+                                    <a href="edit.php?id=<?=$group["id"]?>"  class="btn btn-info" ><i class="fa fa-edit "></i> </a>
+                                    <a href="delete.php?id=<?=$group["id"]?>" class="btn btn-danger" ><i class="fa fa-trash"></i></a>
                                 </td>
                            <?php } ?>
                         </tr>
