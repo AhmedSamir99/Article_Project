@@ -42,3 +42,8 @@ $users = $_users_sqlhandler->getData(array());
         </div>
     </div>
 </div>
+
+<?php
+    include('../../includes/scripts.php');
+    include('../../includes/footer.php');
+?>
