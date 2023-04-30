@@ -131,4 +131,24 @@ class MySqlHandler implements DbHandler{
             die("An error occurred while processing your request. Please try again later.");        }
    
     }
+
+    public function updateRecord($id, $data) {
+        try {
+            $table = $this->_table;
+            $updateFields = '';
+            foreach ($data as $key => $value) {
+                $updateFields .= "$key='$value',";
+            }
+            $updateFields = rtrim($updateFields, ','); // remove the last comma
+            $sql = "update $table set $updateFields where id = $id";
+            return $this->executeQuery($sql);
+        }
+        catch(Exception $e) {
+            $this->_log->error($e->getMessage(), ['exception' => $e]);
+            die("An error occurred while processing your request. Please try again later.");
+            }
+
+
+}
+
 }
