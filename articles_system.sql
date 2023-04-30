@@ -89,6 +89,7 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `group_id` int(255) NOT NULL,
   `deleted_at` varchar(255) NULL DEFAULT NULL,
+   `token` varchar(255) DEFAULT NULL,
   `type` enum('user','admin','editor') NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
