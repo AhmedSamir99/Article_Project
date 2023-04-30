@@ -7,10 +7,13 @@ $articles= new MySqlHandler("articles");
 //check first if the user is logged in
 if(isset($_SESSION["logged"]) ==true) {
     if ($_SESSION['type'] == 'admin') {
-        $articles= $articles->getData(array());
-    } elseif($_SESSION['type'] == 'editor') {
-        var_dump($_SESSION['type']); // if the user was editor, then get the articles belongs to the users with group id =2 (editor group)
-        $sql = "SELECT a.*
+        // $articles= $articles->getData(array());
+        $sql = "SELECT a.*, u.name as user_name FROM articles a JOIN users u ON a.user_id = u.id";
+        $articles = $articles->getResults($sql);
+    } 
+    elseif($_SESSION['type'] == 'editor') {
+        // var_dump($_SESSION['type']); // if the user was editor, then get the articles belongs to the users with group id =2 (editor group)
+        $sql = "SELECT a.*,u.name as user_name
         FROM articles a
         JOIN users u ON a.user_id = u.id
         WHERE u.group_id = 2";
@@ -22,7 +25,6 @@ else{
 }
 
 ?>
-    
     <div class="container mt-5  ">
         <div class="d-sm-flex align-items-center justify-content-between mb-4 ">
             <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-newspaper "></i>Articles</h1>
@@ -38,8 +40,8 @@ else{
                 <!-- <th>Summary</th> -->
                 <th>image</th>
                 <!-- <th>Body</th> -->
-                <th>User Id</th>
-                <th>Publish Date</th>
+                <th>User Name</th>
+                <th>publish DATE</th>
                 <th>Actions</th>
             </thead>
             <tbody>
@@ -54,11 +56,16 @@ else{
                                 <!-- <td><?php echo $article['summary']; ?></td> -->
                                 <td><img src="<?php echo "../../images/" .$article["image"]; ?>" style="height:50px ;width: 50px"></td>
                                 <!-- <td><?php echo $article['body']; ?></td> -->
-                                <td><?php echo $article['user_id']; ?></td>
+                                <td><?php echo $article['user_name']; ?></td>
                                 <td><?php echo $article['publish_date']; ?></td>
+                                
+
                                 <td>
+                                <a  href ="view_article.php?id=<?=$article["id"]?>"  class="btn btn-info"> <i class="fa fa-eye"></i> </a>
+
                                 <a href="delete_article.php?id=<?=$article["id"]?>" class="btn btn-danger" ><i class="fa fa-trash"></i></a>
                                     <!-- <a href="delete_user.php?id=<?=$user["id"]?>" class="btn btn-danger" ><i class="fa fa-trash"></i></a> -->
+
                                 </td>
                             <?php } ?>
                         </tr>
@@ -88,4 +95,3 @@ function confirmDelete(id) {
     include('../../includes/scripts.php');
     include('../../includes/footer.php');
     ?>
- 

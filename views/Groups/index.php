@@ -26,6 +26,9 @@ $groups = $_groups_sqlhandler->getData(array());
 </style>
 <body>
     <div class="container mt-5">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4 ">
+            <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users "></i>Groups</h1>
+          </div>
         <div class="d-flex justify-content-end mb-3 gap-1">    
             <a href="create.php"  class="btn btn-success" ><i class="fa fa-create"></i>Create New Group</a>
             <a href="restore.php"  class="btn btn-dark" ><i class="fa fa-restore"></i>All Deleted Groups</a>

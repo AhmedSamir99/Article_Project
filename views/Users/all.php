@@ -33,7 +33,9 @@ else {
         <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user-friends "></i>Users</h1>
       </div>
         <div class="d-flex justify-content-end mb-3 gap-1">    
+            <?php if($_SESSION['type'] == 'admin'){ ?>
             <a href="add_user_form.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New user</a>
+            <?php } ?>
             <a href="restore.php"  class="btn btn-dark" ><i class="fa fa-restore"></i>All Deleted Users</a>
         </div>
         <table id="usetTable" class="table table-striped border">
@@ -44,6 +46,7 @@ else {
                 <th>User Name</th>
                 <th>Mobile Number</th>
                 <th>group Name</th>
+                <th>subscription Date</th>
                 <th>Type</th>
                 <th>Actions</th>
             </thead>
@@ -60,6 +63,7 @@ else {
                                 <td><?php echo $user['username']; ?></td>
                                 <td><?php echo $user['mobile_number']; ?></td>
                                 <td><?php echo $user['group_name']; ?></td>
+                                <td><?php echo $user['group_subscription_date']; ?></td>
                                 <td><?php echo $user['type']; ?></td>
                                 <td>
                                 <a href="edit_user_form.php?id=<?php echo $user['id']; ?>" class="btn btn-info"><i class="fa fa-edit"></i> </a>
@@ -89,9 +93,7 @@ function confirmDelete(id) {
   }
 }
 </script>
-
-   
-    <?php
+<?php
     include('../../includes/scripts.php');
     include('../../includes/footer.php');
     ?>
