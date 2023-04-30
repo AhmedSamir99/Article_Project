@@ -39,7 +39,7 @@ else{
                 <th>image</th>
                 <!-- <th>Body</th> -->
                 <th>User Id</th>
-                <th>publish DATE</th>
+                <th>Publish Date</th>
                 <th>Actions</th>
             </thead>
             <tbody>

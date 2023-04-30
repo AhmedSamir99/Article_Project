@@ -1,0 +1,1 @@
+[2023-04-30T21:20:26.283039+02:00] exceptions.ERROR: Unknown column 'deleted_at' in 'field list' {"exception":"[object] (mysqli_sql_exception(code: 1054): Unknown column 'deleted_at' in 'field list' at C:\\xampp\\htdocs\\Article_Project\\models\\MySqlHandler.php:89)"} []
