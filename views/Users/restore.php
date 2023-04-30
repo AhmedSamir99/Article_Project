@@ -53,7 +53,6 @@ $sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_i
                                 <td><?php echo $user['group_name']; ?></td>
                                 <td><?php echo $user['type']; ?></td>
                                 <td>
-                                <td>
                                 <a href="restore.php?id=<?=$user["id"]?>" class="btn btn-success" ><i class="fa fa-undo "></i></a>
                                 </td>
                         </tr>
