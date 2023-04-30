@@ -1,5 +1,7 @@
 <?php
-
+include('../../includes/header.php'); 
+include('../../includes/navbar.php');  
+require_once '../../vendor/autoload.php'; 
 include_once("group_object.php");
 $id = (isset($_GET["id"]))? intval($_GET["id"])  : 0;
 $current_group = $_groups_sqlhandler-> getRecordById($id)[0];
@@ -18,24 +20,25 @@ $users = $_users_sqlhandler->getData(array());
     crossorigin="anonymous"
 />
 
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h2><i><img src='images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
+<div class='container d-flex flex-column align-items-center justify-content-center'>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h2><i><img src='../../images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
         <span class="fs-2"><?php echo $current_group['name']; ?></h2>
-      </div>
-<div class='container'>
-    
-    <p class="fs-3"><?php echo $current_group['description']; ?></p>
+    </div>
+    <div class='container d-flex flex-column align-items-center border-top'>
+        <p class="fs-3"><?php echo $current_group['description']; ?></p>
 
-    <div class="card" style="width: 20rem;">
-        <div class="card-header">
-            <h4 class="fs-5">Users For this Groups are: </h4>
-        </div>
-        <ul class="list-group list-group-flush">
-            <?php foreach($users as $user) { 
-                if($current_group['id'] == $user['group_id']) { ?>
-                    <li class="list-group-item fs-5"><?php echo $user['name']; ?></li>
+        <div class="card" style="width: 20rem;">
+            <div class="card-header">
+                <h4 class="fs-5">Users For this Groups are: </h4>
+            </div>
+            <ul class="list-group list-group-flush">
+                <?php foreach($users as $user) { 
+                    if($current_group['id'] == $user['group_id']) { ?>
+                        <li class="list-group-item fs-5"><?php echo $user['name']; ?></li>
+                    <?php } ?>
                 <?php } ?>
-            <?php } ?>
-        </ul>
+            </ul>
+        </div>
     </div>
 </div>
