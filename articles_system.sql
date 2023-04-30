@@ -34,7 +34,8 @@ CREATE TABLE `articles` (
   `image` varchar(255) DEFAULT NULL,
   `body` text NOT NULL,
   `publish_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `deleted_at` varchar(255) NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -87,6 +88,7 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `group_id` int(255) NOT NULL,
+  `deleted_at` varchar(255) NULL DEFAULT NULL,
   `type` enum('user','admin','editor') NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

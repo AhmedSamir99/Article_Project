@@ -32,8 +32,9 @@ else {
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user "></i>Users</h1>
       </div>
-        <div class="d-flex justify-content-end mb-3">    
+        <div class="d-flex justify-content-end mb-3 gap-1">    
             <a href="add_user_form.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New user</a>
+            <a href="restore.php"  class="btn btn-dark" ><i class="fa fa-restore"></i>All Deleted Users</a>
         </div>
         <table id="usetTable" class="table table-striped border">
             <thead>
@@ -51,17 +52,22 @@ else {
                     
                     <?php foreach($users as $user) { ?>
                         <tr>
-                            <td><?php echo $user['id']; ?></td>
-                            <td><?php echo $user['name']; ?></td>
-                            <td><?php echo $user['email']; ?></td>
-                            <td><?php echo $user['username']; ?></td>
-                            <td><?php echo $user['mobile_number']; ?></td>
-                            <td><?php echo $user['group_name']; ?></td>
-                            <td><?php echo $user['type']; ?></td>
-                            <td>
-                            <a href="edit_user_form.php?id=<?php echo $user['id']; ?>" class="btn btn-info"><i class="fa fa-edit"></i>Edit </a>
-                            <a href="#" onclick="confirmDelete(<?php echo $user['id']; ?>)" class="btn btn-danger">Delete</a>
-                            </td>
+                            <?php
+                                if( $user['deleted_at'] == NULL) {?>
+                                <td><?php echo $user['id']; ?></td>
+                                <td><?php echo $user['name']; ?></td>
+                                <td><?php echo $user['email']; ?></td>
+                                <td><?php echo $user['username']; ?></td>
+                                <td><?php echo $user['mobile_number']; ?></td>
+                                <td><?php echo $user['group_name']; ?></td>
+                                <td><?php echo $user['type']; ?></td>
+                                <td>
+                                <a href="edit_user_form.php?id=<?php echo $user['id']; ?>" class="btn btn-info"><i class="fa fa-edit"></i> </a>
+                                
+                                <a href="delete_user.php?id=<?=$user["id"]?>" class="btn btn-danger" ><i class="fa fa-trash"></i></a>
+                                <!-- <a href="#" onclick="confirmDelete(<?php echo $user['id']; ?>)" class="btn btn-danger">Delete</a> -->
+                                </td>
+                            <?php } ?>
                         </tr>
                     <?php } ?>
                 <?php } ?>

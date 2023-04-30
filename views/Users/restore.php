@@ -2,12 +2,15 @@
 include('../../includes/header.php'); 
 include('../../includes/navbar.php');  
 require_once '../../vendor/autoload.php'; 
-include_once("group_object.php");
+$db = new MySqlHandler('users');
 if(isset($_GET["id"])){
     $id = intval($_GET["id"]);
-    $_groups_sqlhandler->restore($id);
+    $db->restore($id);
 }
-$groups = $_groups_sqlhandler->getData(array());
+$users = $db->getData(array());
+$sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_id = g.id";
+            $users = $db->getResults($sql);
+       
 ?>
 
 <link
@@ -26,27 +29,33 @@ $groups = $_groups_sqlhandler->getData(array());
 <body>
     <div class="container mt-5">
         <table id="usetTable" class="table table-striped border">
-            <thead>
+        <thead>
                 <th>#</th>
-                <!-- <th>Group Icon</th> -->
-                <th>Group Name</th>
-                <th>Group Description</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>User Name</th>
+                <th>Mobile Number</th>
+                <th>group Name</th>
+                <th>Type</th>
                 <th>Actions</th>
             </thead>
             <tbody>
-                <?php if(!empty($groups)) { ?>
+                <?php if(!empty($users)) { ?>
                     
-                    <?php foreach($groups as $group) { ?>
-                        <?php if ($group['deleted_at'] != NULL) {?>
+                    <?php foreach($users as $user) { ?>
+                        <?php if ($user['deleted_at'] != NULL) {?>
                         <tr>
-                            <td><?php echo $group['id']; ?></td>
-                            <!-- <td><img src="<?php echo "../../images/" .$group["icon"]; ?>" height="40vh"></td> -->
-                            <td><i><img src='../../images/group.png' class='group-icon' style='width:2vw;height:4vh'></i>&nbsp
-                            <span class="fs-5"><?php echo $group['name']; ?></td>
-                            <td><?php echo $group['description']; ?></td>
-                            <td>
-                                <a href="restore.php?id=<?=$group["id"]?>" class="btn btn-success" ><i class="fa fa-undo "></i></a>
-                            </td>
+                        <td><?php echo $user['id']; ?></td>
+                                <td><?php echo $user['name']; ?></td>
+                                <td><?php echo $user['email']; ?></td>
+                                <td><?php echo $user['username']; ?></td>
+                                <td><?php echo $user['mobile_number']; ?></td>
+                                <td><?php echo $user['group_name']; ?></td>
+                                <td><?php echo $user['type']; ?></td>
+                                <td>
+                                <td>
+                                <a href="restore.php?id=<?=$user["id"]?>" class="btn btn-success" ><i class="fa fa-undo "></i></a>
+                                </td>
                         </tr>
                         <?php } ?>
                     <?php } ?>

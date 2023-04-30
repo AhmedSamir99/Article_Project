@@ -27,8 +27,9 @@ else{
         <div class="d-sm-flex align-items-center justify-content-between mb-4 ">
             <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-newspaper "></i>Articles</h1>
           </div>
-        <div class="d-flex justify-content-end mb-3 ">    
+        <div class="d-flex justify-content-end mb-3 gap-1">    
             <a href="add_article_form.php" class="btn btn-success" ><i class="fa fa-create"></i>Create New Article</a>
+            <a href="restore.php"  class="btn btn-dark" ><i class="fa fa-restore"></i>All Deleted Articles</a>
         </div>
         <table id="articleTable" class="table table-striped border ">
             <thead>
@@ -46,16 +47,20 @@ else{
                     
                     <?php foreach($articles as $article) { ?>
                         <tr>
-                            <td><?php echo $article['id']; ?></td>
-                            <td><?php echo $article['title']; ?></td>
-                            <!-- <td><?php echo $article['summary']; ?></td> -->
-                            <td><img src="<?php echo "../../images/" .$article["image"]; ?>" style="height:50px ;width: 50px"></td>
-                            <!-- <td><?php echo $article['body']; ?></td> -->
-                            <td><?php echo $article['user_id']; ?></td>
-                            <td><?php echo $article['publish_date']; ?></td>
-                            <td>
-                                <a href="#" onclick="confirmDelete(<?php echo $article['id']; ?>)" class="btn btn-danger">Delete</a>
-                            </td>
+                            <?php
+                                if( $article['deleted_at'] == NULL) {?>
+                                <td><?php echo $article['id']; ?></td>
+                                <td><?php echo $article['title']; ?></td>
+                                <!-- <td><?php echo $article['summary']; ?></td> -->
+                                <td><img src="<?php echo "../../images/" .$article["image"]; ?>" style="height:50px ;width: 50px"></td>
+                                <!-- <td><?php echo $article['body']; ?></td> -->
+                                <td><?php echo $article['user_id']; ?></td>
+                                <td><?php echo $article['publish_date']; ?></td>
+                                <td>
+                                <a href="delete_article.php?id=<?=$article["id"]?>" class="btn btn-danger" ><i class="fa fa-trash"></i></a>
+                                    <!-- <a href="delete_user.php?id=<?=$user["id"]?>" class="btn btn-danger" ><i class="fa fa-trash"></i></a> -->
+                                </td>
+                            <?php } ?>
                         </tr>
                     <?php } ?>
                 <?php } ?>
