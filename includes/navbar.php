@@ -14,17 +14,15 @@
 
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
-
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
   <a class="nav-link" href="../../views/Extra/dashboard.php">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
-    <span>Dashboard</span></a>
+    <i class="fas fa-fw fa-tachometer-alt fs-5"></i>
+    <span style='font-size:1.1vw'>Dashboard</span></a>
 </li>
 
 <!-- Divider -->
 <hr class="sidebar-divider bg-light">
-
 
 <?php
 if($_SESSION['user']['type']=="admin"||$_SESSION['user']['type']=="editor")
@@ -33,24 +31,24 @@ if($_SESSION['user']['type']=="admin"||$_SESSION['user']['type']=="editor")
   <!-- Nav Item - Comments -->
   <li class="nav-item">
     <a class="nav-link" href="../../views/Groups/index.php">
-      <i class="fas fa-fw fa-users "></i>
-      <span>Groups</span></a>
+      <i class="fas fa-fw fa-users fs-5"></i>
+      <span class="fs-5">Groups</span></a>
   </li>
   ');
   echo('
 <!-- Nav Item - Admin -->
 <li class="nav-item">
   <a class="nav-link" href="../../views/Users/all.php">
-    <i class="fas fa-fw fa-user-friends  "></i>
-    <span>Users</span></a>
+    <i class="fas fa-fw fa-user-friends fs-5"></i>
+    <span class="fs-5">Users</span></a>
 </li>
 ');
 echo('
 <!-- Nav Item - Comments -->
 <li class="nav-item">
   <a class="nav-link" href="../../views/Articles/all.php">
-    <i class="fas fa-fw fa-newspaper "></i>
-    <span>Articles</span></a>
+    <i class="fas fa-fw fa-newspaper fs-5"></i>
+    <span class="fs-5">Articles</span></a>
 </li>
 ');
 //  Nav Item - Charts 
@@ -58,8 +56,8 @@ echo('
 <!-- Nav Item - Comments -->
 <li class="nav-item">
   <a class="nav-link" href="../../views/Extra/chart.php">
-  <i class="fas fa-fw fa-chart-area"></i>
-  <span>Charts</span></a>
+  <i class="fas fa-fw fa-chart-area fs-5"></i>
+  <span class="fs-5">Charts</span></a>
 </li>
 ');
 }
@@ -67,8 +65,8 @@ echo('
 
 <li class="nav-item">
   <a class="nav-link" href="../../views/Users/profile.php">
-    <i class="fas fa-fw fa-user"></i>
-    <span>Profile</span></a>
+    <i class="fas fa-fw fa-user fs-5"></i>
+    <span class="fs-5">Profile</span></a>
 </li>
 
 <!-- Divider -->
@@ -79,8 +77,8 @@ echo('
 <hr class="sidebar-divider bg-light">
 
 <li class="nav-item">
-<a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm "></i>
+<a class="nav-link fs-5" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fs-5"></i>
                   Logout
                 </a>
 </li>
@@ -111,27 +109,19 @@ echo('
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-           <li class="nav-item">
-                        <a class="nav-link" href="../../index.php" style="color:grey">login</a>
-           </li>
-           <!-- <li class="nav-item">
-                        <a class="nav-link" href="#" style="color:grey">signup</a>
-           </li> -->
-           
-           
             <div class="topbar-divider d-none d-sm-block"></div>
             
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small fs-5">
                 <?php
                 //calling the session variable
                   $name=$_SESSION["name"];
                   echo "$name";
                   ?>
                 </span>
-                <img class="img-profile rounded-circle" src="../../images/user.png">
+                <img class="img-profile rounded-circle" src="../../images/usericon.png">
               </a>
       
               <!-- Dropdown - User Information -->
@@ -173,10 +163,8 @@ echo('
             <button type="submit" name="logout_btn" class="btn btn-primary">Logout</button>
 
           </form>
-
-
         </div>
       </div>
     </div>
   </div>
-  
+ 
