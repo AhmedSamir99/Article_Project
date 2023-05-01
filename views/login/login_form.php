@@ -32,11 +32,13 @@
         <label>password</label>
         <input type="password" name="password" placeholder="Password"><br>
 
-        <button type="submit">Login</button>
-        <div class="form-group">
-            <input type="checkbox" name="rememberMe" id="rememberMe">
-            <label for="rememberMe">Remember me</label>
-        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center;">
+  <input type="checkbox" name="rememberMe" id="rememberMe" style="margin: 0;">
+  <label for="rememberMe" style="font-weight: bold; margin-right: 0;padding-right:0"><pre>Remember Me</pre></label>
+</div>
+  <button type="submit" style="background-color: #060616; color: white; padding: 10px; border-radius: 5px; border: none; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);">Login</button>
+</div>
      </form>
 </body>
 </html>
