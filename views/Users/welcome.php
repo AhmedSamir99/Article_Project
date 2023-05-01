@@ -1,8 +1,7 @@
 <?php
-session_start();
-require_once '../../vendor/autoload.php'; 
-// include('../../includes/header.php'); 
-// include('../../includes/navbar.php'); 
+include('../../includes/header.php'); 
+include('../../includes/navbar.php'); 
+require_once '../../vendor/autoload.php';
 
 $db = new MySqlHandler("users");
 $login_time = date('F j, Y, g:i a');
@@ -53,19 +52,10 @@ $result= $db->executeQuery($sql2);
     <title>Document</title>
 </head>
 <body>
-<!-- 
-<button onclick="visitProfile()">profile</button>
-<a href="../logout.php">Logout</a> -->
-<!-- 
-<script>
 
-    function visitProfile(){
-        window.location.href="profile.php";
-    }
-
-
-</script> -->
-
-
+<?php
+    include('../../includes/scripts.php');
+    include('../../includes/footer.php');
+?>
 </body>
 </html>

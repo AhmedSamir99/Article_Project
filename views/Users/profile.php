@@ -6,7 +6,7 @@
   $DBHandler = new MySqlHandler('users');
   $DBHandler2 = new MySqlHandler('groups');
 
-  if(isset($_SESSION["logged"]) == true && $_SESSION['type'] == 'user') {
+  if(isset($_SESSION["logged"]) == true ) {
     $sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_id = g.id";
     $sql2 = "SELECT name FROM groups WHERE id=".$_SESSION['user']['group_id'];
     $groups = $DBHandler2->getResults($sql2);

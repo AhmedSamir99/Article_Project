@@ -26,24 +26,40 @@
 <hr class="sidebar-divider bg-light">
 
 
-
-<li class="nav-item">
-  
-  <a class="nav-link" href="../../views/Groups/index.php">  
-    <i class="fas fa-fw fa-users"></i>
-    <span>groups</span></a>
-</li>
-
-
 <?php
 if($_SESSION['user']['type']=="admin"||$_SESSION['user']['type']=="editor")
 {
+  echo('
+  <!-- Nav Item - Comments -->
+  <li class="nav-item">
+    <a class="nav-link" href="../../views/Groups/index.php">
+      <i class="fas fa-fw fa-users "></i>
+      <span>Groups</span></a>
+  </li>
+  ');
   echo('
 <!-- Nav Item - Admin -->
 <li class="nav-item">
   <a class="nav-link" href="../../views/Users/all.php">
     <i class="fas fa-fw fa-user-friends  "></i>
     <span>Users</span></a>
+</li>
+');
+echo('
+<!-- Nav Item - Comments -->
+<li class="nav-item">
+  <a class="nav-link" href="../../views/Articles/all.php">
+    <i class="fas fa-fw fa-newspaper "></i>
+    <span>Articles</span></a>
+</li>
+');
+//  Nav Item - Charts 
+echo('
+<!-- Nav Item - Comments -->
+<li class="nav-item">
+  <a class="nav-link" href="../../views/Extra/chart.php">
+  <i class="fas fa-fw fa-chart-area"></i>
+  <span>Charts</span></a>
 </li>
 ');
 }
@@ -54,28 +70,10 @@ if($_SESSION['user']['type']=="admin"||$_SESSION['user']['type']=="editor")
     <i class="fas fa-fw fa-user"></i>
     <span>Profile</span></a>
 </li>
-<?php
-if($_SESSION['user']['type']=="admin"||$_SESSION['user']['type']=="editor")
-{
-  echo('
-<!-- Nav Item - Comments -->
-<li class="nav-item">
-  <a class="nav-link" href="../../views/Articles/all.php">
-    <i class="fas fa-fw fa-newspaper "></i>
-    <span>Articles</span></a>
-</li>
-');
-}
-?>
+
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 
-<!-- Nav Item - Charts -->
-<li class="nav-item">
-  <a class="nav-link" href="../../views/Extra/chart.php">
-    <i class="fas fa-fw fa-chart-area"></i>
-    <span>Charts</span></a>
-</li>
 
 <!-- Divider -->
 <hr class="sidebar-divider bg-light">
