@@ -110,8 +110,16 @@ echo('
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
+          <div class="custom-control custom-switch mt-3" style="margin-left: 20px;">
+          <ul class="navbar-nav mr-auto">
+<!-- dark mood button -->
+<!-- <div class="custom-control custom-switch mt-3 mr-3" style="flex-shrink: 0;">
+  <input type="checkbox" class="custom-control-input" id="darkSwitch">
+  <label class="custom-control-label mr-2 d-none d-lg-inline text-gray-600 small fs-5" for="darkSwitch" style="font-weight: bold;">Dark mode</label>
+</div> -->
+
             <div class="topbar-divider d-none d-sm-block"></div>
-            
+              
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -133,7 +141,7 @@ echo('
                 </a>
               </div>
             </li>
-
+            
           </ul>
 
         </nav>

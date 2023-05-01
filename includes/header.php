@@ -47,9 +47,33 @@
   animation-timing-function: ease-in-out;
 }
     </style>
+    <script>
+  const toggleSwitch = document.querySelector('#darkSwitch');
+
+  function switchTheme(event) {
+    if (event.target.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  }
+
+  toggleSwitch.addEventListener('change', switchTheme, false);
+</script>
+
+<style>
+  /* Styling for dark mode switch */
+  .custom-control-input:checked~.custom-control-label::before {
+    background-color: #1b1b1b;
+  }
+  .custom-control-input:checked~.custom-control-label::after {
+    color: #fff;
+    background-color: #1b1b1b;
+  }
+</style>
 </head>
 
 <body id="page-top">
 
   <!-- Page Wrapper -->
-  <div id="wrapper">
+  <div id="wrapper" >
