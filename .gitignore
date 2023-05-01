@@ -1,8 +1,10 @@
 # Ignore composer dependencies
-/vendor
+vendor
 
 # Ignore user-specific files
-/.vscode
+.vscode
 
 # Ignore logs and cache files
  exceptions.log
+ config.php
+
