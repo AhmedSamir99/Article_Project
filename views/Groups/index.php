@@ -3,8 +3,14 @@ include('../../includes/header.php');
 include('../../includes/navbar.php');  
 require_once '../../vendor/autoload.php'; 
 include_once("group_object.php");
-$groups = $_groups_sqlhandler->getData(array());
+if ($_SESSION['type'] == 'admin') {
+    $groups = $_groups_sqlhandler->getData(array());
+}
 
+if ($_SESSION['type'] == 'editor') {
+    $sql="SELECT * FROM groups WHERE name = 'Editors'";
+    $groups = $_groups_sqlhandler->getResults($sql);
+}
 ?>
 <link
       rel="stylesheet"

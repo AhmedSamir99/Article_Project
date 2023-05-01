@@ -16,7 +16,6 @@ if(isset($_SESSION["logged"]) ==true) {
 
     } elseif($_SESSION['type'] == 'editor') {
   //if the user was editor , then get the users with type editor
-        
             $sql = "SELECT u.*, g.name as group_name FROM users u JOIN groups g ON u.group_id = g.id WHERE u.type ='editor'";
             $users = $db->getResults($sql);
         

@@ -4,6 +4,8 @@ include('../../includes/navbar.php');
 ?>
 
 <?php
+// session_start();
+
 include "../../dbcon.php";
 
 class Dashboard {
@@ -38,7 +40,7 @@ class Dashboard {
     $n_ar = $this->getNumArticles();
     $n_gr = $this->getNumGroups();
     $n_us = $this->getNumUsers();
-
+   
     echo('
       <!-- Begin Page Content -->
       <div class="container-fluid">
