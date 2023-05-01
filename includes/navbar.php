@@ -6,9 +6,10 @@
    style="background-image:linear-gradient(180deg,#B5F2DB 10%,#060616 100%); z-index: 999999;">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../views/Extra/dashboard.php">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../views/Extra/dashboard.php"style="transform: rotate(14deg)">
   <div class="sidebar-brand-icon rotate-n-15">
-  <img src="../../images/blog1.png" style="width: 120%; height: 43px; transform: rotate(14deg);"> </div>
+    <img src="../../images/blog1.png" style="width: 120%; height: 43px;transform: rotate(14deg)">
+  </div>
   <div class="sidebar-brand-text mx-3"></div>
 </a>
 

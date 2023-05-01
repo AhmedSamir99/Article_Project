@@ -33,6 +33,20 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 
   <link rel="icon" type="image/x-icon" href="../../images/blog1.png">
+  <style>
+    @keyframes move-up-down {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.sidebar-brand-icon img {
+  animation-name: move-up-down;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+    </style>
 </head>
 
 <body id="page-top">
