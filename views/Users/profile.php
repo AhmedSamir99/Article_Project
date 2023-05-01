@@ -67,17 +67,21 @@
           <a href="../Extra/dashboard.php" class="btn btn-danger">Back </a>
         </div>
         <div class="card-body">
-          <img class="profile-picture" src="../../images/user.png" alt="Profile Picture">
-          <div class="info">
-            <h2><?php echo $_SESSION['user']['name'] ?> </h2>
-            <p><?php echo $_SESSION['user']['type'] ?></p>
-            <p><?php echo $_SESSION['user']['email'] ?></p>
-            <p><?php echo $_SESSION['user']['mobile_number'] ?></p>
-            <p><?php echo $_SESSION['user']['username'] ?></p>
-            <?php if(isset($groups[0]['name'])): ?>
-              <p>Group: <?php echo $groups[0]['name'] ?></p>
-            <?php endif; ?>
-          </div>
+          <img class="profile-picture" src="../../images/usericon.png" alt="Profile Picture">
+          <div class="info" style="display: flex; flex-wrap: wrap;">
+  <div style="width: 50%;">
+    <h2><?php echo $_SESSION['user']['name'] ?> </h2>
+    <p><?php echo $_SESSION['user']['type'] ?></p>
+    <p><?php echo $_SESSION['user']['email'] ?></p>
+  </div>
+  <div style="width: 50%;">
+    <p><?php echo $_SESSION['user']['mobile_number'] ?></p>
+    <p><?php echo $_SESSION['user']['username'] ?></p>
+    <?php if(isset($groups[0]['name'])): ?>
+      <p>Group: <?php echo $groups[0]['name'] ?></p>
+    <?php endif; ?>
+  </div>
+</div>
         </div>
       </div>
     </div>
@@ -100,8 +104,11 @@
   }
   include('../../includes/scripts.php');
   ?>
-  <div class="fixed-footer fixed-bottom bg-white">
-    <div class="copyright text-center my-auto">
-      <span>Copyright &copy; .blog 2023</span>
-    </div>
+  <div class="footer fixed-bottom bg-white">
+
+  <div class="text-center p-3 pt-0">
+  <img width="50px" src="../../images/blog1.png" style="width: 5%; filter: grayscale(100%);">
+        <hr class=" mx-auto  text-dark w-25" />
+          Copyright © 2023 All rights reserved
+          <span class="fw-bold text-dark">.blog</span>.
   </div>
