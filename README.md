@@ -73,11 +73,11 @@ composer dump-autoload
 
 ## Roles 
 
- Admin ----> Full access 
- Editor ---> Full access on articles - View Groups 
+ Admin ----> Full access <br>
+ Editor ---> Full access on articles - View Groups <br>
  User ---->Create and view their own articles 
 
-## ScreenShoots
+## ScreenShoots Samples
 ![image](https://user-images.githubusercontent.com/104720889/235434643-331246aa-49f1-4b98-a405-17ffe541407a.png)
 
 ![image](https://user-images.githubusercontent.com/104720889/235434741-a93349fd-3e36-4a6d-8d8a-85b3235774e8.png)
