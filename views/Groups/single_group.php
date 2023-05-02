@@ -2,8 +2,8 @@
 include('../../includes/header.php'); 
 include('../../includes/navbar.php');  
 require_once '../../vendor/autoload.php';
- 
 include_once("group_object.php");
+
 $id = (isset($_GET["id"]))? intval($_GET["id"])  : 0;
 $current_group = $_groups_sqlhandler-> getRecordById($id)[0];
 $_users_sqlhandler = new MySqlHandler("users");
