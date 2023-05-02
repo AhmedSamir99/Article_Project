@@ -94,9 +94,9 @@ composer dump-autoload
 
 ![image](https://user-images.githubusercontent.com/104720889/235435595-e735e300-c611-4d64-92e0-c81db4dbdd2d.png)
 
-## Demo 
+## Video Demo 
 
-[![Website Demo Video](https://user-images.githubusercontent.com/104720889/235642976-9cb5869f-39eb-4dee-9071-072f34b611e4.png)](https://youtu.be/nqhwoZzCwZw) 
+### [![Website Demo Video](https://user-images.githubusercontent.com/104720889/235644316-4444e08e-7888-4876-addc-c1ac77abbb71.png)](https://youtu.be/nqhwoZzCwZw) 
 
 
 ## Authors
