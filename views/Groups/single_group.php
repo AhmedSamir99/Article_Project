@@ -1,7 +1,8 @@
 <?php
 include('../../includes/header.php'); 
 include('../../includes/navbar.php');  
-require_once '../../vendor/autoload.php'; 
+require_once '../../vendor/autoload.php';
+ 
 include_once("group_object.php");
 $id = (isset($_GET["id"]))? intval($_GET["id"])  : 0;
 $current_group = $_groups_sqlhandler-> getRecordById($id)[0];
@@ -41,7 +42,7 @@ $users = $_users_sqlhandler->getData(array());
             </tr>
         </thead>
         <tbody>
-            <?php if(!empty($groups)) { 
+            <?php 
             foreach($users as $user) { 
                 if($current_group['id'] == $user['group_id']) { ?>
                     <tr>
@@ -50,14 +51,9 @@ $users = $_users_sqlhandler->getData(array());
                         <td><?php echo $user['username']; ?></td>
                         <td><?php echo $user['email']; ?></td>
                         <td><?php echo $user['mobile_number']; ?></td>
-                        <?php } ?>
                     </tr>
-                <?php } 
-                } else { ?>
-                    <tr class='col-8'>
-                        <td><?php echo "No Users fot theis group"; ?></td>
-                    </tr>
-            <?php }?>
+                    <?php } ?>
+                <?php } ?>
         </tbody>
     </table>
 </div>
